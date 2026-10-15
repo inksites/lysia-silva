@@ -321,16 +321,65 @@ html,body{overflow-x:clip}
 @media (max-width:860px){.about{grid-template-columns:1fr}.about figure{aspect-ratio:1/1;border-radius:160px 160px 24px 24px}}
 
 /* agendar */
-.visit{display:grid;grid-template-columns:1fr 1fr;background:var(--panel);border-radius:28px;overflow:hidden}
+.visit{display:grid;grid-template-columns:.85fr 1.15fr;background:var(--panel);border-radius:28px;overflow:hidden}
 .visit .info{padding:clamp(28px,4vw,64px)}
 .visit h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.6vw,54px);line-height:1.05;margin-top:18px}
+.visit .info>p{color:var(--text-secondary);margin-top:16px;max-width:36ch}
 .visit dl{margin-top:28px}
 .visit dt{font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--text-secondary);margin-top:20px}
 .visit dd{margin-top:4px}
 .visit .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
-.visit figure{min-height:460px}
-.visit figure img{width:100%;height:100%;object-fit:cover}
-@media (max-width:860px){.visit{grid-template-columns:1fr}.visit figure{min-height:0;aspect-ratio:1/1}}
+@media (max-width:860px){.visit{grid-template-columns:1fr}}
+
+/* ficha de agendamento */
+.ficha{background:var(--canvas);margin:clamp(10px,1.4vw,18px);border-radius:22px;padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;min-height:560px;box-shadow:0 18px 50px rgba(46,36,39,.07)}
+.fc-prog{display:flex;gap:6px}
+.fc-prog i{flex:1;height:3px;border-radius:3px;background:var(--line);transition:background .5s var(--ease-out)}
+.fc-prog i.on{background:var(--mocha)}
+.fc-n{display:block;margin-top:20px;font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--mocha)}
+.fc-passo{display:none}
+.fc-passo.on{display:block;animation:fcEntra .5s var(--ease-out)}
+@keyframes fcEntra{from{opacity:0;transform:translateY(10px)}}
+.fc-passo h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.6vw,36px);line-height:1.1;margin-top:6px}
+.fc-ajuda{color:var(--text-secondary);font-size:14px;margin-top:8px;max-width:44ch}
+.fc-passo fieldset{border:0;padding:0;margin:22px 0 0;min-width:0}
+.fc-passo legend{padding:0;font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:10px}
+.fc-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fc-opts.c3{grid-template-columns:repeat(3,1fr)}
+.fc-opt{position:relative;display:block}
+.fc-opt input{position:absolute;opacity:0;pointer-events:none}
+.fc-opt span{display:block;height:100%;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;transition:border-color .3s var(--ease-out),background .3s var(--ease-out),transform .2s var(--ease-out)}
+.fc-opt span:hover{border-color:rgba(158,104,114,.5)}
+.fc-opt b{display:block;font-weight:600;font-size:15px;color:var(--text-primary)}
+.fc-opt small{display:block;color:var(--text-secondary);font-size:12.5px;margin-top:2px;line-height:1.4}
+.fc-opts.c3 .fc-opt span{text-align:center;padding:12px 8px}
+.fc-opt input:checked+span{border-color:var(--mocha);background:var(--mocha-light);box-shadow:inset 0 0 0 1px var(--mocha)}
+.fc-opt input:focus-visible+span{outline:2px solid var(--mocha);outline-offset:2px}
+.fc-sub{display:none;margin-top:16px}
+.fc-sub.on{display:block;animation:fcEntra .4s var(--ease-out)}
+.fc-cuidado{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--panel);color:var(--text-secondary);font-size:13.5px;line-height:1.5}
+.fc-cuidado svg{flex:none;width:18px;height:18px;margin-top:2px;stroke:var(--mocha);fill:none;stroke-width:1.6}
+.ficha .field textarea{width:100%;font:inherit;font-size:16px;color:var(--text-primary);background:transparent;border:0;border-bottom:1px solid rgba(46,36,39,.4);padding:10px 0;resize:vertical;min-height:44px}
+.ficha .field textarea:focus{outline:none;border-color:var(--ink)}
+.fc-lembrar{display:flex;gap:10px;align-items:center;margin-top:22px;font-size:14px;color:var(--text-secondary);cursor:pointer}
+.fc-lembrar input{width:18px;height:18px;accent-color:var(--mocha)}
+.fc-resumo{margin-top:20px;border-top:1px solid var(--line)}
+.fc-resumo div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.fc-resumo dt{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-secondary);padding-top:3px}
+.fc-resumo dd{margin:0}
+.fc-resumo .alerta dd{color:#8E3B4A;font-weight:600}
+.fc-foto{margin-top:18px;font-size:14px;color:var(--text-secondary)}
+.fc-erro{min-height:20px;margin-top:14px;font-size:13.5px;color:#8E3B4A}
+.fc-nav{margin-top:auto;padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.fc-voltar{background:none;border:0;font:inherit;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-secondary);cursor:pointer;padding:12px 0}
+.fc-voltar[hidden]{display:block;visibility:hidden}
+.fc-nav .btn{border:0;cursor:pointer}
+.fc-enviar{display:none}
+.ficha.fim .fc-seguir{display:none}
+.ficha.fim .fc-enviar{display:inline-flex}
+@media (max-width:860px){.ficha{order:-1}}
+@media (max-width:480px){.fc-opts.c3{grid-template-columns:1fr 1fr}.fc-resumo div{grid-template-columns:1fr;gap:2px}.ficha{min-height:0}}
+@media (prefers-reduced-motion:reduce){.fc-passo.on,.fc-sub.on{animation:none}}
 
 /* botão flutuante do WhatsApp */
 .wa{position:fixed;right:18px;bottom:18px;z-index:30;width:58px;height:58px;border-radius:50%;background:var(--ink);display:grid;place-items:center;box-shadow:0 8px 24px rgba(42,35,33,.25);transition:transform .3s var(--ease-out)}
@@ -369,14 +418,14 @@ html,body{overflow-x:clip}
         <div class="kicker">Studio Lysia Silva</div>
         <h2 class="split">Seu horário <em>te espera.</em></h2>
         <p>Segunda a sexta, das 8h às 17h. Agende direto pelo WhatsApp.</p>
-        <div class="row"><a class="btn" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20quero%20agendar." target="_blank" rel="noopener">Agendar no WhatsApp</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
+        <div class="row"><a class="btn" href="#agendar">Agendar horário</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
       </div>
       <div class="count" id="count" aria-hidden="true"><span id="cn">01</span><i></i><span>03</span></div>
       <div class="static-copy">
         <div class="kicker">Nail designer · Olinda</div>
         <h1>Unhas que elevam <em>sua autoestima.</em></h1>
         <p>Banho em gel, gel na tip, molde F1 e fibra de vidro, com hora marcada e capricho em cada detalhe.</p>
-        <div class="row"><a class="btn" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20quero%20agendar." target="_blank" rel="noopener">Agendar no WhatsApp</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
+        <div class="row"><a class="btn" href="#agendar">Agendar horário</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
       </div>
     </div>
     <div class="frame" aria-hidden="true">
@@ -507,14 +556,112 @@ html,body{overflow-x:clip}
         <div class="info">
           <span class="label">Agendar</span>
           <h2>Seu horário, <span class="gloss in">do seu jeito.</span></h2>
+          <p>Preencha a ficha em menos de um minuto. Ela chega pronta no WhatsApp da Lysia, que confirma o seu horário.</p>
           <dl>
             <dt>Onde</dt><dd>Alto da Conquista · Olinda, PE</dd>
             <dt>Horário</dt><dd>Segunda a sexta, das 8h às 17h</dd>
             <dt>WhatsApp</dt><dd>(81) 99318-0902</dd>
           </dl>
-          <div class="row"><a class="btn" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20quero%20agendar." target="_blank" rel="noopener">Agendar no WhatsApp</a><a class="btn ghost" href="https://www.instagram.com/studiolysiasilva/" target="_blank" rel="noopener">Instagram</a></div>
+          <div class="row"><a class="btn ghost" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20queria%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Prefiro conversar</a><a class="btn ghost" href="https://www.instagram.com/studiolysiasilva/" target="_blank" rel="noopener">Instagram</a></div>
         </div>
-        <figure><img src="assets/agendar.jpg" alt="Mãos com unhas quadradas lilás claro sobre cetim branco" loading="lazy" width="900" height="1200"></figure>
+
+        <form class="ficha" id="ficha" novalidate aria-label="Ficha de agendamento">
+          <div class="fc-prog" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+
+          <div class="fc-passo on" data-p="1">
+            <span class="fc-n">Passo 1 de 5</span>
+            <h3>O que você quer fazer?</h3>
+            <fieldset>
+              <legend class="sr">Serviço</legend>
+              <div class="fc-opts">
+                <label class="fc-opt"><input type="radio" name="servico" value="Esmaltação em gel"><span><b>Esmaltação em gel</b><small>Cor na unha natural</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Banho em gel"><span><b>Banho em gel</b><small>Fortalece sem alongar</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Aplicação"><span><b>Aplicação</b><small>Alongamento novo</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Manutenção"><span><b>Manutenção</b><small>Já tenho alongamento</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Pé em gel"><span><b>Pé em gel</b><small>Pés com brilho</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Quero uma indicação"><span><b>Não sei ainda</b><small>Quero uma indicação</small></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="fc-sub" id="fc-tecnica">
+              <legend>Qual técnica?</legend>
+              <div class="fc-opts">
+                <label class="fc-opt"><input type="radio" name="tecnica" value="gel na tip"><span><b>Gel na tip</b></span></label>
+                <label class="fc-opt"><input type="radio" name="tecnica" value="molde F1"><span><b>Molde F1</b></span></label>
+                <label class="fc-opt"><input type="radio" name="tecnica" value="fibra de vidro"><span><b>Fibra de vidro</b></span></label>
+                <label class="fc-opt"><input type="radio" name="tecnica" value="técnica a combinar"><span><b>Ela me indica</b></span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="fc-passo" data-p="2">
+            <span class="fc-n">Passo 2 de 5</span>
+            <h3>Quando fica melhor?</h3>
+            <p class="fc-ajuda">É a sua preferência. A Lysia confirma o horário certinho com você.</p>
+            <fieldset>
+              <legend>Dia</legend>
+              <div class="fc-opts c3">
+                <label class="fc-opt"><input type="radio" name="dia" value="segunda"><span><b>Seg</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="terça"><span><b>Ter</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="quarta"><span><b>Qua</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="quinta"><span><b>Qui</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="sexta"><span><b>Sex</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="qualquer dia"><span><b>Tanto faz</b></span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Período</legend>
+              <div class="fc-opts c3">
+                <label class="fc-opt"><input type="radio" name="periodo" value="manhã"><span><b>Manhã</b></span></label>
+                <label class="fc-opt"><input type="radio" name="periodo" value="tarde"><span><b>Tarde</b></span></label>
+                <label class="fc-opt"><input type="radio" name="periodo" value="qualquer horário"><span><b>Tanto faz</b></span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="fc-passo" data-p="3">
+            <span class="fc-n">Passo 3 de 5</span>
+            <h3>Sua saúde</h3>
+            <div class="fc-cuidado"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.3 12C19 16.6 12 21 12 21Z"/></svg><span>Essas respostas ajudam a Lysia a cuidar de você com segurança. Elas vão só pra ela.</span></div>
+            <fieldset>
+              <legend>Você tem diabetes?</legend>
+              <div class="fc-opts">
+                <label class="fc-opt"><input type="radio" name="diabetes" value="sim"><span><b>Sim</b></span></label>
+                <label class="fc-opt"><input type="radio" name="diabetes" value="não"><span><b>Não</b></span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Alergia a gel, esmalte ou preparador?</legend>
+              <div class="fc-opts c3">
+                <label class="fc-opt"><input type="radio" name="alergia" value="sim"><span><b>Sim</b></span></label>
+                <label class="fc-opt"><input type="radio" name="alergia" value="não"><span><b>Não</b></span></label>
+                <label class="fc-opt"><input type="radio" name="alergia" value="não sei"><span><b>Não sei</b></span></label>
+              </div>
+            </fieldset>
+            <div class="field fc-sub" id="fc-alergia-qual"><label for="fc-qual">A quê? Como reagiu?</label><textarea id="fc-qual" name="alergia_qual" rows="2" placeholder="Ex.: coceira com um preparador"></textarea></div>
+          </div>
+
+          <div class="fc-passo" data-p="4">
+            <span class="fc-n">Passo 4 de 5</span>
+            <h3>Seus dados</h3>
+            <div class="field"><label for="fc-nome">Nome e sobrenome</label><input id="fc-nome" name="nome" autocomplete="name" placeholder="Como você se chama"></div>
+            <div class="field"><label for="fc-tel">WhatsApp</label><input id="fc-tel" name="tel" inputmode="tel" autocomplete="tel" placeholder="(81) 90000-0000"></div>
+            <label class="fc-lembrar"><input type="checkbox" id="fc-lembrar" checked> Lembrar meus dados neste celular pra próxima vez</label>
+          </div>
+
+          <div class="fc-passo" data-p="5">
+            <span class="fc-n">Passo 5 de 5</span>
+            <h3>Confere se está tudo certo</h3>
+            <dl class="fc-resumo" id="fc-resumo"></dl>
+            <p class="fc-foto">Tem uma foto de referência? Depois de enviar, é só mandar ela na mesma conversa.</p>
+          </div>
+
+          <p class="fc-erro" id="fc-erro" role="alert"></p>
+          <div class="fc-nav">
+            <button type="button" class="fc-voltar" id="fc-voltar" hidden>Voltar</button>
+            <button type="button" class="btn fc-seguir" id="fc-seguir">Continuar</button>
+            <a class="btn fc-enviar" id="fc-enviar" href="https://wa.me/5581993180902" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -673,6 +820,115 @@ html,body{overflow-x:clip}
 
   if (reduce.matches) pinToFinalStates();
   else { shown = target = heroProgress(); drawHero(shown); updateCaptions(shown); requestAnimationFrame(loadRamp); }
+})();
+</script>
+<script>
+/* ---------- ficha de agendamento: monta a mensagem e abre o WhatsApp da Lysia ---------- */
+(() => {
+  const WHATS = '5581993180902', CHAVE = 'ficha-lysia';
+  const f = document.getElementById('ficha');
+  const passos = [...f.querySelectorAll('.fc-passo')], barras = [...f.querySelectorAll('.fc-prog i')];
+  const voltar = document.getElementById('fc-voltar'), seguir = document.getElementById('fc-seguir');
+  const enviar = document.getElementById('fc-enviar'), erro = document.getElementById('fc-erro');
+  const tecnica = document.getElementById('fc-tecnica'), qual = document.getElementById('fc-alergia-qual');
+  const nome = document.getElementById('fc-nome'), tel = document.getElementById('fc-tel'), lembrar = document.getElementById('fc-lembrar');
+  let atual = 0;
+
+  const val = n => (f.querySelector(`input[name="${n}"]:checked`) || {}).value || '';
+  const marcar = (n, v) => { const el = f.querySelector(`input[name="${n}"][value="${v}"]`); if (el) el.checked = true; };
+  const digitos = s => s.replace(/\D/g, '');
+
+  // cliente que volta: nome, telefone e saúde já preenchidos
+  try {
+    const s = JSON.parse(localStorage.getItem(CHAVE) || 'null');
+    if (s) { nome.value = s.nome || ''; tel.value = s.tel || ''; marcar('diabetes', s.diabetes); marcar('alergia', s.alergia); f.alergia_qual.value = s.qual || ''; }
+  } catch (e) {}
+
+  function mostrarSub(){
+    tecnica.classList.toggle('on', val('servico') === 'Aplicação');
+    qual.classList.toggle('on', val('alergia') === 'sim');
+  }
+  f.addEventListener('change', () => { mostrarSub(); erro.textContent = ''; });
+  mostrarSub();
+
+  tel.addEventListener('input', () => {
+    const d = digitos(tel.value).slice(0, 11);
+    tel.value = d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}` : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+  });
+
+  function problema(i){
+    if (i === 0 && !val('servico')) return 'Escolha um serviço pra continuar.';
+    if (i === 0 && val('servico') === 'Aplicação' && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
+    if (i === 1 && (!val('dia') || !val('periodo'))) return 'Escolha o dia e o período.';
+    if (i === 2 && (!val('diabetes') || !val('alergia'))) return 'Responda as duas perguntas, por favor.';
+    if (i === 3 && nome.value.trim().split(/\s+/).length < 2) return 'Escreva nome e sobrenome.';
+    if (i === 3 && ![10, 11].includes(digitos(tel.value).length)) return 'Confira o WhatsApp com DDD.';
+    return '';
+  }
+
+  function servicoTexto(){
+    const s = val('servico');
+    return s === 'Aplicação' ? `Aplicação (${val('tecnica')})` : s;
+  }
+
+  function mensagem(){
+    const alergia = val('alergia') === 'sim' ? `SIM: ${f.alergia_qual.value.trim() || 'conto na conversa'}` : val('alergia');
+    return [
+      'Olá, Lysia! Vim pelo seu site e quero agendar.',
+      '',
+      `*Nome:* ${nome.value.trim()}`,
+      `*WhatsApp:* ${tel.value}`,
+      `*Serviço:* ${servicoTexto()}`,
+      `*Preferência:* ${val('dia')}, ${val('periodo')}`,
+      `*Diabetes:* ${val('diabetes') === 'sim' ? 'SIM ⚠️' : 'não'}`,
+      `*Alergia a gel/preparador:* ${alergia}${val('alergia') === 'sim' ? ' ⚠️' : ''}`
+    ].join('\n');
+  }
+
+  function resumo(){
+    const linhas = [
+      ['Serviço', servicoTexto()],
+      ['Quando', `${val('dia')}, ${val('periodo')}`],
+      ['Diabetes', val('diabetes'), val('diabetes') === 'sim'],
+      ['Alergia', val('alergia') === 'sim' ? `sim: ${f.alergia_qual.value.trim() || 'conto na conversa'}` : val('alergia'), val('alergia') === 'sim'],
+      ['Nome', nome.value.trim()],
+      ['WhatsApp', tel.value]
+    ];
+    const r = document.getElementById('fc-resumo'); r.textContent = '';
+    linhas.forEach(([k, v, alerta]) => {
+      const d = document.createElement('div'); if (alerta) d.className = 'alerta';
+      const dt = document.createElement('dt'); dt.textContent = k;
+      const dd = document.createElement('dd'); dd.textContent = v.charAt(0).toUpperCase() + v.slice(1);
+      d.append(dt, dd); r.appendChild(d);
+    });
+    enviar.href = `https://wa.me/${WHATS}?text=${encodeURIComponent(mensagem())}`;
+  }
+
+  function ir(i){
+    atual = i;
+    passos.forEach((p, n) => p.classList.toggle('on', n === i));
+    barras.forEach((b, n) => b.classList.toggle('on', n <= i));
+    voltar.hidden = i === 0;
+    f.classList.toggle('fim', i === passos.length - 1);
+    erro.textContent = '';
+    if (i === passos.length - 1) resumo();
+    const topo = f.getBoundingClientRect().top;
+    if (topo < 0) f.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  seguir.addEventListener('click', () => {
+    const p = problema(atual);
+    if (p) { erro.textContent = p; return; }
+    ir(atual + 1);
+  });
+  voltar.addEventListener('click', () => ir(Math.max(0, atual - 1)));
+
+  enviar.addEventListener('click', () => {
+    try {
+      if (lembrar.checked) localStorage.setItem(CHAVE, JSON.stringify({ nome: nome.value.trim(), tel: tel.value, diabetes: val('diabetes'), alergia: val('alergia'), qual: f.alergia_qual.value.trim() }));
+      else localStorage.removeItem(CHAVE);
+    } catch (e) {}
+  });
 })();
 </script>
 </body>
