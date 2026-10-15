@@ -291,6 +291,15 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 html,body{overflow-x:clip}
 .count{display:none}
 .hero{height:100vh;height:100svh}
+/* celular: capa em fluxo normal, o texto ocupa o que precisar (nada cortado em tela baixa) */
+@media (max-width:860px){
+  .hero{height:auto}
+  .stage{position:relative;height:auto;display:flex;flex-direction:column;overflow:visible}
+  .frame{order:-1;flex:none;height:min(58svh,560px);min-height:320px}
+  .copy{padding:26px 0 40px}
+  .band,.static-copy{position:relative;top:auto;left:auto;right:auto;transform:none;padding:0 16px}
+  .band .row,.static-copy .row{gap:10px}
+}
 .gloss{background-image:linear-gradient(100deg,var(--mocha) 0%,var(--mocha) 42%,#FFEFF2 50%,var(--mocha) 58%,var(--mocha) 100%)}
 @media (prefers-reduced-motion:no-preference){
   section.alive .title.done .gloss{animation:brilho 8s var(--ease-soft) 1.5s infinite}
