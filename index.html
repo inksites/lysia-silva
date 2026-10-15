@@ -291,6 +291,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 html,body{overflow-x:clip}
 .count{display:none}
 .hero{height:100vh;height:100svh}
+/* capa: retrato que surge do fundo, com halo rosé (multiply funde a parede branca com a página) */
+.hero .frame{background:radial-gradient(ellipse 50% 40% at 52% 32%,rgba(230,192,201,.9),rgba(240,222,226,.5) 55%,rgba(251,247,246,0) 82%),var(--canvas);-webkit-mask-image:radial-gradient(ellipse 52% 60% at 50% 40%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 52% 60% at 50% 40%,#000 62%,transparent 100%);border-radius:0}
+.hero .slide{will-change:auto}
+.hero .slide .photo{mix-blend-mode:multiply}
 /* celular: capa em fluxo normal, o texto ocupa o que precisar (nada cortado em tela baixa) */
 @media (max-width:860px){
   .hero{height:auto}
@@ -299,6 +303,8 @@ html,body{overflow-x:clip}
   .copy{padding:26px 0 40px}
   .band,.static-copy{position:relative;top:auto;left:auto;right:auto;transform:none;padding:0 16px}
   .band .row,.static-copy .row{gap:10px}
+  /* mask no celular: mais aberta, pra não virar bolha */
+  .hero .frame{-webkit-mask-image:radial-gradient(ellipse 66% 64% at 50% 40%,#000 66%,transparent 100%);mask-image:radial-gradient(ellipse 66% 64% at 50% 40%,#000 66%,transparent 100%)}
 }
 .gloss{background-image:linear-gradient(100deg,var(--mocha) 0%,var(--mocha) 42%,#FFEFF2 50%,var(--mocha) 58%,var(--mocha) 100%)}
 @media (prefers-reduced-motion:no-preference){
