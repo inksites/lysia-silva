@@ -290,6 +290,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 }
 html,body{overflow-x:clip}
 .count{display:none}
+.hero{height:100vh;height:100svh}
 .gloss{background-image:linear-gradient(100deg,var(--mocha) 0%,var(--mocha) 42%,#FFEFF2 50%,var(--mocha) 58%,var(--mocha) 100%)}
 @media (prefers-reduced-motion:no-preference){
   section.alive .title.done .gloss{animation:brilho 8s var(--ease-soft) 1.5s infinite}
@@ -420,25 +421,15 @@ html,body{overflow-x:clip}
 <header class="hero" id="topo">
   <div class="stage" id="stage">
     <div class="copy">
-      <div class="band e-shine" data-a="0" data-b="0.3" data-spread="0.55">
-        <div class="kicker">Nail designer · Olinda</div>
+      <div class="band e-shine" data-a="0" data-b="1" data-spread="0.55">
+        <div class="kicker">Nail designer em Olinda</div>
         <h1 class="split">Unhas que elevam <em>sua autoestima.</em></h1>
         <p>Molde russo, molde F1, fibra de vidro, gel na tips e banho em gel, com hora marcada e capricho em cada detalhe.</p>
-      </div>
-      <div class="band e-layer" data-a="0.34" data-b="0.62">
-        <div class="kicker">Alongamento</div>
-        <h2 class="split">Formato fino, <em>unha forte.</em></h2>
-        <p>Amendoada, stiletto ou quadrada, no comprimento que você quiser.</p>
-      </div>
-      <div class="band e-rise" data-a="0.68" data-b="1" data-ramp="0.05">
-        <div class="kicker">Studio Lysia Silva</div>
-        <h2 class="split">Seu horário <em>te espera.</em></h2>
-        <p>Segunda a sexta, das 8h às 17h. Agende direto pelo WhatsApp.</p>
         <div class="row"><a class="btn" href="#agendar">Agendar horário</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
       </div>
       <div class="count" id="count" aria-hidden="true"><span id="cn">01</span><i></i><span>03</span></div>
       <div class="static-copy">
-        <div class="kicker">Nail designer · Olinda</div>
+        <div class="kicker">Nail designer em Olinda</div>
         <h1>Unhas que elevam <em>sua autoestima.</em></h1>
         <p>Molde russo, molde F1, fibra de vidro, gel na tips e banho em gel, com hora marcada e capricho em cada detalhe.</p>
         <div class="row"><a class="btn" href="#agendar">Agendar horário</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
@@ -446,9 +437,7 @@ html,body{overflow-x:clip}
     </div>
     <div class="frame" aria-hidden="true">
       <div class="slide" data-tag="Lysia Silva · nail designer"><div class="photo" style="background-image:url('assets/lysia-capa.jpg');background-position:50% 20%"></div><div class="glint"><i></i></div></div>
-      <div class="slide" data-tag="Chocolate stiletto"><div class="photo" style="background-image:url('assets/chocolate.jpg');background-position:50% 50%"></div><div class="glint"><i></i></div></div>
-      <div class="slide" data-tag="Francesinha"><div class="photo" style="background-image:url('assets/francesinha.jpg');background-position:50% 50%"></div><div class="glint"><i></i></div></div>
-      <span class="style-tag" id="tag">Lysia Silva · nail designer</span>
+      <span id="tag" hidden></span>
     </div>
   </div>
 </header>
@@ -785,7 +774,7 @@ html,body{overflow-x:clip}
       const fout = i === slides.length - 1 ? 1 : 1 - smooth(p, b - .02, b + .03);
       const o = fin * fout;
       const t = clamp((p - a) / (b - a), 0, 1);
-      const z = 1 + .12 * t;
+      const z = slides.length === 1 ? 1 : 1 + .12 * t;
       const g = clamp((t - .15) / .6, 0, 1);
       const gx = (-200 + g * 900).toFixed(0) + '%', go = g > 0 && g < 1 ? Math.sin(g * Math.PI) : 0;
       if (Math.abs(o - s.o) > .004) { s.el.style.setProperty('--o', o.toFixed(3)); s.o = o; }
@@ -793,7 +782,7 @@ html,body{overflow-x:clip}
       if (gx !== s.gx) { s.glint.style.setProperty('--gx', gx); s.gx = gx; }
       if (Math.abs(go - s.go) > .01) { s.glint.style.setProperty('--go', go.toFixed(2)); s.go = go; }
     });
-    const idx = p < .32 ? 0 : p < .66 ? 1 : 2;
+    const idx = Math.min(slides.length - 1, p < .32 ? 0 : p < .66 ? 1 : 2);
     if (slides[idx].tag !== lastTag) { tag.textContent = slides[idx].tag; cn.textContent = '0' + (idx + 1); lastTag = slides[idx].tag; }
     if (Math.abs(p - lastPP) > .004) { count.style.setProperty('--pp', p.toFixed(3)); lastPP = p; }
   }
@@ -844,7 +833,7 @@ html,body{overflow-x:clip}
   /* ---------- nav ---------- */
   const nav = document.getElementById('nav'); let navSolid = null;
   addEventListener('scroll', () => {
-    const s = hero.getBoundingClientRect().bottom < innerHeight * .5;
+    const s = hero.getBoundingClientRect().bottom < innerHeight * .9;
     if (s !== navSolid) { nav.classList.toggle('solid', s); navSolid = s; }
   }, { passive: true });
 
