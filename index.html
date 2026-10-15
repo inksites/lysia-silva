@@ -8,14 +8,14 @@
 <meta name="theme-color" content="#FAF7F4">
 <meta property="og:title" content="Studio Lysia Silva · Nail designer">
 <meta property="og:description" content="Unhas em gel com capricho em cada detalhe. Olinda, PE.">
-<meta property="og:image" content="https://inksites.github.io/lysia-silva/assets/francesinha.jpg">
+<meta property="og:image" content="https://inksites.github.io/lysia-silva/assets/lysia-capa.jpg">
 <meta property="og:url" content="https://inksites.github.io/lysia-silva/">
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF7F4'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%232A2321'%3ELS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/francesinha.jpg">
+<link rel="preload" as="image" href="assets/lysia-capa.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"NailSalon","name":"Studio Lysia Silva","telephone":"+55 81 99318-0902","address":{"@type":"PostalAddress","addressLocality":"Olinda","streetAddress":"Alto da Conquista","addressRegion":"PE","addressCountry":"BR"},"openingHours":"Mo-Fr 08:00-17:00","image":"https://inksites.github.io/lysia-silva/assets/francesinha.jpg","sameAs":["https://www.instagram.com/studiolysiasilva/"]}
 </script>
@@ -303,6 +303,21 @@ html,body{overflow-x:clip}
 /* técnicas */
 .pain p{max-width:46ch}
 
+/* tabela de preços */
+.precos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);margin-top:48px;align-items:start}
+.preco{background:var(--panel);border-radius:22px;padding:clamp(24px,3vw,40px)}
+.preco h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.4vw,34px);line-height:1.1}
+.preco h3 small{display:block;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--mocha);margin-bottom:8px}
+.preco ul{list-style:none;padding:0;margin:18px 0 0}
+.preco li{display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+.preco li:last-child{border-bottom:0}
+.preco li span{flex:1}
+.preco li em{display:block;font-style:normal;font-size:13px;color:var(--text-secondary);margin-top:2px}
+.preco li b{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1;color:var(--mocha);white-space:nowrap}
+.preco li.sub{display:block;padding:26px 0 6px;font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--mocha)}
+.preco .obs{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--text-secondary)}
+@media (max-width:760px){.precos{grid-template-columns:1fr}}
+
 /* serviços sem preço */
 .item{grid-template-columns:1fr}
 .menu h4{grid-column:1/-1;font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--mocha);margin-top:40px}
@@ -352,6 +367,7 @@ html,body{overflow-x:clip}
 .fc-opt span:hover{border-color:rgba(158,104,114,.5)}
 .fc-opt b{display:block;font-weight:600;font-size:15px;color:var(--text-primary)}
 .fc-opt small{display:block;color:var(--text-secondary);font-size:12.5px;margin-top:2px;line-height:1.4}
+.fc-larga{grid-column:1/-1}
 .fc-opts.c3 .fc-opt span{text-align:center;padding:12px 8px}
 .fc-opt input:checked+span{border-color:var(--mocha);background:var(--mocha-light);box-shadow:inset 0 0 0 1px var(--mocha)}
 .fc-opt input:focus-visible+span{outline:2px solid var(--mocha);outline-offset:2px}
@@ -407,7 +423,7 @@ html,body{overflow-x:clip}
       <div class="band e-shine" data-a="0" data-b="0.3" data-spread="0.55">
         <div class="kicker">Nail designer · Olinda</div>
         <h1 class="split">Unhas que elevam <em>sua autoestima.</em></h1>
-        <p>Banho em gel, gel na tip, molde F1 e fibra de vidro, com hora marcada e capricho em cada detalhe.</p>
+        <p>Molde russo, molde F1, fibra de vidro, gel na tips e banho em gel, com hora marcada e capricho em cada detalhe.</p>
       </div>
       <div class="band e-layer" data-a="0.34" data-b="0.62">
         <div class="kicker">Alongamento</div>
@@ -424,15 +440,15 @@ html,body{overflow-x:clip}
       <div class="static-copy">
         <div class="kicker">Nail designer · Olinda</div>
         <h1>Unhas que elevam <em>sua autoestima.</em></h1>
-        <p>Banho em gel, gel na tip, molde F1 e fibra de vidro, com hora marcada e capricho em cada detalhe.</p>
+        <p>Molde russo, molde F1, fibra de vidro, gel na tips e banho em gel, com hora marcada e capricho em cada detalhe.</p>
         <div class="row"><a class="btn" href="#agendar">Agendar horário</a><a class="btn ghost" href="#trabalhos">Ver trabalhos</a></div>
       </div>
     </div>
     <div class="frame" aria-hidden="true">
-      <div class="slide" data-tag="Francesinha"><div class="photo" style="background-image:url('assets/francesinha.jpg');background-position:50% 50%"></div><div class="glint"><i></i></div></div>
+      <div class="slide" data-tag="Lysia Silva · nail designer"><div class="photo" style="background-image:url('assets/lysia-capa.jpg');background-position:50% 20%"></div><div class="glint"><i></i></div></div>
       <div class="slide" data-tag="Chocolate stiletto"><div class="photo" style="background-image:url('assets/chocolate.jpg');background-position:50% 50%"></div><div class="glint"><i></i></div></div>
-      <div class="slide" data-tag="Nude com brilho"><div class="photo" style="background-image:url('assets/nude-anel.jpg');background-position:50% 50%"></div><div class="glint"><i></i></div></div>
-      <span class="style-tag" id="tag">Francesinha</span>
+      <div class="slide" data-tag="Francesinha"><div class="photo" style="background-image:url('assets/francesinha.jpg');background-position:50% 50%"></div><div class="glint"><i></i></div></div>
+      <span class="style-tag" id="tag">Lysia Silva · nail designer</span>
     </div>
   </div>
 </header>
@@ -500,25 +516,59 @@ html,body{overflow-x:clip}
 
   <section id="servicos">
     <div class="wrap">
-      <span class="label rv">Serviços</span>
-      <h2 class="title rv">Mãos e pés <span class="gloss">em gel.</span></h2>
-      <div class="menu stagger">
-        <div class="col">
-          <h4 class="rv">Mãos</h4>
-          <div class="item rv"><h3>Banho em gel</h3><p>Na unha natural, pra fortalecer e dar brilho.</p></div>
-          <div class="item rv"><h3>Gel na tip</h3><p>Alongamento com ponteira, no formato que você quiser.</p></div>
-          <div class="item rv"><h3>Molde F1</h3><p>Alongamento fino, com curvatura feita no molde.</p></div>
-          <div class="item rv"><h3>Fibra de vidro</h3><p>Alongamento resistente e com aparência natural.</p></div>
-          <div class="item rv"><h3>Manutenção</h3><p>Preenche o crescimento e renova a cor.</p></div>
+      <span class="label rv">Valores</span>
+      <h2 class="title rv">Tabela de <span class="gloss">serviços.</span></h2>
+      <p class="lede rv">Valores das mãos completas. Decorações simples já estão incluídas no preço da aplicação ou da manutenção.</p>
+      <div class="precos stagger">
+        <div class="preco rv">
+          <h3><small>Mãos</small>Alongamento</h3>
+          <ul>
+            <li><span>Molde russo</span><b>R$ 110</b></li>
+            <li><span>Molde F1</span><b>R$ 100</b></li>
+            <li><span>Fibra de vidro</span><b>R$ 100</b></li>
+            <li><span>Gel na tips</span><b>R$ 85</b></li>
+            <li><span>Banho em gel<em>Na unha natural, sem alongar</em></span><b>R$ 70</b></li>
+            <li><span>Blindagem</span><b>R$ 55</b></li>
+            <li><span>Postiça realista</span><b>R$ 50</b></li>
+          </ul>
         </div>
-        <div class="col">
-          <h4 class="rv">Pés</h4>
-          <div class="item rv"><h3>Pé em gel</h3><p>Pés bonitos por mais tempo, com o mesmo brilho das mãos.</p></div>
-          <h4 class="rv">Cursos</h4>
-          <div class="item rv"><h3>Cursos de unhas</h3><p>Pra quem quer aprender a técnica ou se aperfeiçoar.</p></div>
+        <div class="preco rv">
+          <h3><small>Mãos</small>Manutenção</h3>
+          <ul>
+            <li><span>Molde russo</span><b>R$ 100</b></li>
+            <li><span>Molde F1</span><b>R$ 90</b></li>
+            <li><span>Fibra de vidro</span><b>R$ 85</b></li>
+            <li><span>Gel na tips</span><b>R$ 75</b></li>
+          </ul>
+          <p class="obs">A manutenção vale até 40 dias depois da aplicação. Passou disso, é feita uma nova aplicação.</p>
+        </div>
+        <div class="preco rv">
+          <h3><small>Pés</small>Unhas dos pés</h3>
+          <ul>
+            <li><span>Fibra de vidro</span><b>R$ 80</b></li>
+            <li><span>Molde F1</span><b>R$ 70</b></li>
+            <li><span>Banho em gel</span><b>R$ 60</b></li>
+            <li><span>Blindagem</span><b>R$ 55</b></li>
+            <li class="sub">Manutenção dos pés</li>
+            <li><span>Fibra de vidro</span><b>R$ 70</b></li>
+            <li><span>Molde F1</span><b>R$ 60</b></li>
+          </ul>
+        </div>
+        <div class="preco rv">
+          <h3><small>Extras</small>Decorações</h3>
+          <ul>
+            <li><span>Francesa reversa<em>Em todas as unhas</em></span><b>R$ 40</b></li>
+            <li><span>Encapsulado<em>Em todas as unhas</em></span><b>R$ 30</b></li>
+            <li><span>Baby color</span><b>R$ 15</b></li>
+            <li><span>Baby boomer</span><b>R$ 10</b></li>
+            <li><span>Adesivo ou joia</span><b>R$ 7</b></li>
+            <li><span>Francesa reversa<em>Por unha</em></span><b>R$ 6</b></li>
+            <li><span>Encapsulado<em>Por unha</em></span><b>R$ 5</b></li>
+          </ul>
+          <p class="obs">Decorações simples não pagam extra.</p>
         </div>
       </div>
-      <div class="menu-note rv"><span>Valores e horários disponíveis pelo WhatsApp.</span><a class="btn" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20queria%20saber%20os%20valores." target="_blank" rel="noopener">Pedir valores</a></div>
+      <div class="menu-note rv"><span>Também dá cursos de unhas. Quer saber mais ou tem uma foto de referência?</span><a class="btn ghost" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20queria%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Falar com a Lysia</a><a class="btn" href="#agendar">Agendar horário</a></div>
     </div>
   </section>
 
@@ -544,7 +594,7 @@ html,body{overflow-x:clip}
         <details class="rv"><summary>Você faz o modelo da foto que eu vi? <i aria-hidden="true">+</i></summary><div class="a">Manda a foto pelo WhatsApp. A Lysia te diz se dá pra fazer e qual técnica combina com a sua unha.</div></details>
         <details class="rv"><summary>Qual a diferença entre banho em gel e alongamento? <i aria-hidden="true">+</i></summary><div class="a">O banho em gel fica só por cima da sua unha, sem aumentar o tamanho. No alongamento (tip, molde F1 ou fibra de vidro) a unha ganha comprimento e formato novo.</div></details>
         <details class="rv"><summary>Minha unha é curtinha. Dá pra alongar? <i aria-hidden="true">+</i></summary><div class="a">Na maioria das vezes, sim. Manda uma foto antes que ela avalia e te diz o melhor caminho.</div></details>
-        <details class="rv"><summary>De quanto em quanto tempo faço manutenção? <i aria-hidden="true">+</i></summary><div class="a">Depende de quanto a sua unha cresce. No dia do atendimento a Lysia já te diz quando voltar.</div></details>
+        <details class="rv"><summary>De quanto em quanto tempo faço manutenção? <i aria-hidden="true">+</i></summary><div class="a">A manutenção vale até 40 dias depois da aplicação. Passou disso, a unha precisa de uma nova aplicação, pra ficar bonita e segura.</div></details>
         <details class="rv"><summary>Onde fica o studio? <i aria-hidden="true">+</i></summary><div class="a">No Alto da Conquista, em Olinda. Chama no WhatsApp que ela te manda a localização junto com o horário.</div></details>
       </div>
     </div>
@@ -574,21 +624,33 @@ html,body{overflow-x:clip}
             <fieldset>
               <legend class="sr">Serviço</legend>
               <div class="fc-opts">
-                <label class="fc-opt"><input type="radio" name="servico" value="Esmaltação em gel"><span><b>Esmaltação em gel</b><small>Cor na unha natural</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Alongamento"><span><b>Alongamento</b><small>Aplicação nova</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Manutenção"><span><b>Manutenção</b><small>Até 40 dias da aplicação</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Banho em gel"><span><b>Banho em gel</b><small>Fortalece sem alongar</small></span></label>
-                <label class="fc-opt"><input type="radio" name="servico" value="Aplicação"><span><b>Aplicação</b><small>Alongamento novo</small></span></label>
-                <label class="fc-opt"><input type="radio" name="servico" value="Manutenção"><span><b>Manutenção</b><small>Já tenho alongamento</small></span></label>
-                <label class="fc-opt"><input type="radio" name="servico" value="Pé em gel"><span><b>Pé em gel</b><small>Pés com brilho</small></span></label>
-                <label class="fc-opt"><input type="radio" name="servico" value="Quero uma indicação"><span><b>Não sei ainda</b><small>Quero uma indicação</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Blindagem"><span><b>Blindagem</b><small>Unha natural protegida</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Postiça realista"><span><b>Postiça realista</b><small>Resultado rápido</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Unhas dos pés"><span><b>Unhas dos pés</b><small>Gel, F1 ou fibra</small></span></label>
+                <label class="fc-opt fc-larga"><input type="radio" name="servico" value="Quero uma indicação"><span><b>Não sei ainda</b><small>Quero uma indicação da Lysia</small></span></label>
               </div>
             </fieldset>
             <fieldset class="fc-sub" id="fc-tecnica">
               <legend>Qual técnica?</legend>
               <div class="fc-opts">
-                <label class="fc-opt"><input type="radio" name="tecnica" value="gel na tip"><span><b>Gel na tip</b></span></label>
+                <label class="fc-opt"><input type="radio" name="tecnica" value="molde russo"><span><b>Molde russo</b></span></label>
                 <label class="fc-opt"><input type="radio" name="tecnica" value="molde F1"><span><b>Molde F1</b></span></label>
                 <label class="fc-opt"><input type="radio" name="tecnica" value="fibra de vidro"><span><b>Fibra de vidro</b></span></label>
-                <label class="fc-opt"><input type="radio" name="tecnica" value="técnica a combinar"><span><b>Ela me indica</b></span></label>
+                <label class="fc-opt"><input type="radio" name="tecnica" value="gel na tips"><span><b>Gel na tips</b></span></label>
+                <label class="fc-opt fc-larga"><input type="radio" name="tecnica" value="técnica a combinar"><span><b>Ela me indica</b></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="fc-sub" id="fc-pes">
+              <legend>Nos pés, qual serviço?</legend>
+              <div class="fc-opts">
+                <label class="fc-opt"><input type="radio" name="pes" value="fibra de vidro"><span><b>Fibra de vidro</b></span></label>
+                <label class="fc-opt"><input type="radio" name="pes" value="molde F1"><span><b>Molde F1</b></span></label>
+                <label class="fc-opt"><input type="radio" name="pes" value="banho em gel"><span><b>Banho em gel</b></span></label>
+                <label class="fc-opt"><input type="radio" name="pes" value="blindagem"><span><b>Blindagem</b></span></label>
+                <label class="fc-opt fc-larga"><input type="radio" name="pes" value="manutenção"><span><b>Manutenção dos pés</b></span></label>
               </div>
             </fieldset>
           </div>
@@ -830,7 +892,7 @@ html,body{overflow-x:clip}
   const passos = [...f.querySelectorAll('.fc-passo')], barras = [...f.querySelectorAll('.fc-prog i')];
   const voltar = document.getElementById('fc-voltar'), seguir = document.getElementById('fc-seguir');
   const enviar = document.getElementById('fc-enviar'), erro = document.getElementById('fc-erro');
-  const tecnica = document.getElementById('fc-tecnica'), qual = document.getElementById('fc-alergia-qual');
+  const tecnica = document.getElementById('fc-tecnica'), pes = document.getElementById('fc-pes'), qual = document.getElementById('fc-alergia-qual');
   const nome = document.getElementById('fc-nome'), tel = document.getElementById('fc-tel'), lembrar = document.getElementById('fc-lembrar');
   let atual = 0;
 
@@ -845,7 +907,8 @@ html,body{overflow-x:clip}
   } catch (e) {}
 
   function mostrarSub(){
-    tecnica.classList.toggle('on', val('servico') === 'Aplicação');
+    tecnica.classList.toggle('on', ['Alongamento', 'Manutenção'].includes(val('servico')));
+    pes.classList.toggle('on', val('servico') === 'Unhas dos pés');
     qual.classList.toggle('on', val('alergia') === 'sim');
   }
   f.addEventListener('change', () => { mostrarSub(); erro.textContent = ''; });
@@ -858,7 +921,8 @@ html,body{overflow-x:clip}
 
   function problema(i){
     if (i === 0 && !val('servico')) return 'Escolha um serviço pra continuar.';
-    if (i === 0 && val('servico') === 'Aplicação' && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
+    if (i === 0 && ['Alongamento', 'Manutenção'].includes(val('servico')) && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
+    if (i === 0 && val('servico') === 'Unhas dos pés' && !val('pes')) return 'Escolha o serviço dos pés.';
     if (i === 1 && (!val('dia') || !val('periodo'))) return 'Escolha o dia e o período.';
     if (i === 2 && (!val('diabetes') || !val('alergia'))) return 'Responda as duas perguntas, por favor.';
     if (i === 3 && nome.value.trim().split(/\s+/).length < 2) return 'Escreva nome e sobrenome.';
@@ -868,7 +932,9 @@ html,body{overflow-x:clip}
 
   function servicoTexto(){
     const s = val('servico');
-    return s === 'Aplicação' ? `Aplicação (${val('tecnica')})` : s;
+    if (['Alongamento', 'Manutenção'].includes(s)) return `${s} (${val('tecnica')})`;
+    if (s === 'Unhas dos pés') return `Pés: ${val('pes')}`;
+    return s;
   }
 
   function mensagem(){
