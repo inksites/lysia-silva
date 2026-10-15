@@ -622,13 +622,14 @@ html,body{overflow-x:clip}
             <fieldset>
               <legend class="sr">Serviço</legend>
               <div class="fc-opts">
-                <label class="fc-opt"><input type="radio" name="servico" value="Alongamento"><span><b>Alongamento</b><small>Aplicação nova</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Aplicação"><span><b>Aplicação</b><small>Alongamento novo</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Manutenção"><span><b>Manutenção</b><small>Até 40 dias da aplicação</small></span></label>
+                <label class="fc-opt fc-larga"><input type="radio" name="servico" value="Cutilagem tradicional"><span><b>Cutilagem tradicional</b><small>Cuidado das cutículas</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Banho em gel"><span><b>Banho em gel</b><small>Fortalece sem alongar</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Blindagem"><span><b>Blindagem</b><small>Unha natural protegida</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Postiça realista"><span><b>Postiça realista</b><small>Resultado rápido</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Unhas dos pés"><span><b>Unhas dos pés</b><small>Gel, F1 ou fibra</small></span></label>
-                <label class="fc-opt fc-larga"><input type="radio" name="servico" value="Quero uma indicação"><span><b>Não sei ainda</b><small>Quero uma indicação da Lysia</small></span></label>
+                <label class="fc-opt fc-larga"><input type="radio" name="servico" value="Quero uma indicação"><span><b>Não sei ainda</b><small>Quero uma indicação</small></span></label>
               </div>
             </fieldset>
             <fieldset class="fc-sub" id="fc-tecnica">
@@ -905,7 +906,7 @@ html,body{overflow-x:clip}
   } catch (e) {}
 
   function mostrarSub(){
-    tecnica.classList.toggle('on', ['Alongamento', 'Manutenção'].includes(val('servico')));
+    tecnica.classList.toggle('on', ['Aplicação', 'Manutenção'].includes(val('servico')));
     pes.classList.toggle('on', val('servico') === 'Unhas dos pés');
     qual.classList.toggle('on', val('alergia') === 'sim');
   }
@@ -919,7 +920,7 @@ html,body{overflow-x:clip}
 
   function problema(i){
     if (i === 0 && !val('servico')) return 'Escolha um serviço pra continuar.';
-    if (i === 0 && ['Alongamento', 'Manutenção'].includes(val('servico')) && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
+    if (i === 0 && ['Aplicação', 'Manutenção'].includes(val('servico')) && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
     if (i === 0 && val('servico') === 'Unhas dos pés' && !val('pes')) return 'Escolha o serviço dos pés.';
     if (i === 1 && (!val('dia') || !val('periodo'))) return 'Escolha o dia e o período.';
     if (i === 2 && (!val('diabetes') || !val('alergia'))) return 'Responda as duas perguntas, por favor.';
@@ -930,7 +931,7 @@ html,body{overflow-x:clip}
 
   function servicoTexto(){
     const s = val('servico');
-    if (['Alongamento', 'Manutenção'].includes(s)) return `${s} (${val('tecnica')})`;
+    if (['Aplicação', 'Manutenção'].includes(s)) return `${s} (${val('tecnica')})`;
     if (s === 'Unhas dos pés') return `Pés: ${val('pes')}`;
     return s;
   }
