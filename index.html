@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/lysia-capa.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"NailSalon","name":"Studio Lysia Silva","telephone":"+55 81 99318-0902","address":{"@type":"PostalAddress","addressLocality":"Olinda","streetAddress":"Alto da Conquista","addressRegion":"PE","addressCountry":"BR"},"openingHours":"Mo-Fr 08:00-17:00","image":"https://inksites.github.io/lysia-silva/assets/francesinha.jpg","sameAs":["https://www.instagram.com/studiolysiasilva/"]}
+{"@context":"https://schema.org","@type":"NailSalon","name":"Studio Lysia Silva","telephone":"+55 81 99318-0902","address":{"@type":"PostalAddress","streetAddress":"Rua Asteca, 374, Alto da Conquista","addressLocality":"Olinda","addressRegion":"PE","addressCountry":"BR"},"image":"https://inksites.github.io/lysia-silva/assets/lysia-capa.jpg","sameAs":["https://www.instagram.com/studiolysiasilva/"]}
 </script>
 <style>
 
@@ -383,6 +383,13 @@ html,body{overflow-x:clip}
 .fc-opt b{display:block;font-weight:600;font-size:15px;color:var(--text-primary)}
 .fc-opt small{display:block;color:var(--text-secondary);font-size:12.5px;margin-top:2px;line-height:1.4}
 .fc-larga{grid-column:1/-1}
+.fc-opts.c4{grid-template-columns:repeat(4,1fr)}
+.fc-opts.c4 .fc-opt span{text-align:center;padding:12px 6px}
+#fc-horas .fc-ajuda{grid-column:1/-1;margin:0}
+.visit dd .ref{color:var(--text-secondary);font-size:14px}
+.mapa{margin-top:26px;border-radius:18px;overflow:hidden;background:var(--panel-2)}
+.mapa iframe{display:block;width:100%;height:220px;border:0;filter:grayscale(.3) sepia(.12)}
+.mapa a{display:block;padding:12px 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;background:var(--canvas)}
 .fc-opts.c3 .fc-opt span{text-align:center;padding:12px 8px}
 .fc-opt input:checked+span{border-color:var(--mocha);background:var(--mocha-light);box-shadow:inset 0 0 0 1px var(--mocha)}
 .fc-opt input:focus-visible+span{outline:2px solid var(--mocha);outline-offset:2px}
@@ -533,6 +540,8 @@ html,body{overflow-x:clip}
             <li><span>Banho em gel<em>Na unha natural, sem alongar</em></span><b>R$ 70</b></li>
             <li><span>Blindagem</span><b>R$ 55</b></li>
             <li><span>Postiça realista</span><b>R$ 50</b></li>
+            <li class="sub">Cutilagem</li>
+            <li><span>Cutilagem tradicional</span><b>a partir de R$ 20</b></li>
           </ul>
         </div>
         <div class="preco rv">
@@ -582,7 +591,7 @@ html,body{overflow-x:clip}
         <span class="label rv">Quem atende</span>
         <h2 class="title rv">Prazer, <span class="gloss">Lysia.</span></h2>
         <p class="rv">Nail designer no Alto da Conquista, em Olinda. Meu trabalho é fazer você olhar pras próprias mãos e se sentir mais bonita e mais confiante.</p>
-        <p class="rv">Atendo com hora marcada, de segunda a sexta. E cliente daqui sempre ganha um mimo, como o chaveirinho de esmalte que abre latinha sem estragar a unha recém-feita.</p>
+        <p class="rv">Atendo com hora marcada, todos os dias da semana. E cliente daqui sempre ganha um mimo, como o chaveirinho de esmalte que abre latinha sem estragar a unha recém-feita.</p>
       </div>
     </div>
   </section>
@@ -598,7 +607,7 @@ html,body{overflow-x:clip}
         <details class="rv"><summary>Qual a diferença entre banho em gel e alongamento? <i aria-hidden="true">+</i></summary><div class="a">O banho em gel fica só por cima da sua unha, sem aumentar o tamanho. No alongamento (tip, molde F1 ou fibra de vidro) a unha ganha comprimento e formato novo.</div></details>
         <details class="rv"><summary>Minha unha é curtinha. Dá pra alongar? <i aria-hidden="true">+</i></summary><div class="a">Na maioria das vezes, sim. Manda uma foto antes que ela avalia e te diz o melhor caminho.</div></details>
         <details class="rv"><summary>De quanto em quanto tempo faço manutenção? <i aria-hidden="true">+</i></summary><div class="a">A manutenção vale até 40 dias depois da aplicação. Passou disso, a unha precisa de uma nova aplicação, pra ficar bonita e segura.</div></details>
-        <details class="rv"><summary>Onde fica o studio? <i aria-hidden="true">+</i></summary><div class="a">No Alto da Conquista, em Olinda. Chama no WhatsApp que ela te manda a localização junto com o horário.</div></details>
+        <details class="rv"><summary>Onde fica o studio? <i aria-hidden="true">+</i></summary><div class="a">Na Rua Asteca, 374, no Alto da Conquista, em Olinda. Fica logo depois da Igreja Católica São Sebastião.</div></details>
       </div>
     </div>
   </section>
@@ -611,10 +620,11 @@ html,body{overflow-x:clip}
           <h2>Seu horário, <span class="gloss in">do seu jeito.</span></h2>
           <p>Preencha a ficha em menos de um minuto. Ela chega pronta no WhatsApp da Lysia, que confirma o seu horário.</p>
           <dl>
-            <dt>Onde</dt><dd>Alto da Conquista · Olinda, PE</dd>
-            <dt>Horário</dt><dd>Segunda a sexta, das 8h às 17h</dd>
+            <dt>Onde</dt><dd>Rua Asteca, 374 · Alto da Conquista, Olinda<br><span class="ref">Depois da Igreja Católica São Sebastião</span></dd>
+            <dt>Horários</dt><dd>Segunda a sábado: 8h, 14h e 16h<br>Domingo: 9h e 14h30</dd>
             <dt>WhatsApp</dt><dd>(81) 99318-0902</dd>
           </dl>
+          <div class="mapa"><iframe title="Mapa do Studio Lysia Silva" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Rua%20Asteca%2C%20374%2C%20Alto%20da%20Conquista%2C%20Olinda%20-%20PE&z=16&output=embed"></iframe><a href="https://www.google.com/maps/search/?api=1&query=Rua%20Asteca%2C%20374%2C%20Alto%20da%20Conquista%2C%20Olinda%20-%20PE" target="_blank" rel="noopener">Abrir no Google Maps</a></div>
           <div class="row"><a class="btn ghost" href="https://wa.me/5581993180902?text=Ol%C3%A1%2C%20Lysia!%20Vi%20seu%20site%20e%20queria%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Prefiro conversar</a><a class="btn ghost" href="https://www.instagram.com/studiolysiasilva/" target="_blank" rel="noopener">Instagram</a></div>
         </div>
 
@@ -662,25 +672,23 @@ html,body{overflow-x:clip}
           <div class="fc-passo" data-p="2">
             <span class="fc-n">Passo 2 de 5</span>
             <h3>Quando fica melhor?</h3>
-            <p class="fc-ajuda">É a sua preferência. A Lysia confirma o horário certinho com você.</p>
+            <p class="fc-ajuda">Escolha o dia e o horário que prefere. A Lysia confirma com você se está livre.</p>
             <fieldset>
               <legend>Dia</legend>
-              <div class="fc-opts c3">
+              <div class="fc-opts c4">
                 <label class="fc-opt"><input type="radio" name="dia" value="segunda"><span><b>Seg</b></span></label>
                 <label class="fc-opt"><input type="radio" name="dia" value="terça"><span><b>Ter</b></span></label>
                 <label class="fc-opt"><input type="radio" name="dia" value="quarta"><span><b>Qua</b></span></label>
                 <label class="fc-opt"><input type="radio" name="dia" value="quinta"><span><b>Qui</b></span></label>
                 <label class="fc-opt"><input type="radio" name="dia" value="sexta"><span><b>Sex</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="sábado"><span><b>Sáb</b></span></label>
+                <label class="fc-opt"><input type="radio" name="dia" value="domingo"><span><b>Dom</b></span></label>
                 <label class="fc-opt"><input type="radio" name="dia" value="qualquer dia"><span><b>Tanto faz</b></span></label>
               </div>
             </fieldset>
             <fieldset>
-              <legend>Período</legend>
-              <div class="fc-opts c3">
-                <label class="fc-opt"><input type="radio" name="periodo" value="manhã"><span><b>Manhã</b></span></label>
-                <label class="fc-opt"><input type="radio" name="periodo" value="tarde"><span><b>Tarde</b></span></label>
-                <label class="fc-opt"><input type="radio" name="periodo" value="qualquer horário"><span><b>Tanto faz</b></span></label>
-              </div>
+              <legend>Horário</legend>
+              <div class="fc-opts c4" id="fc-horas"><p class="fc-ajuda">Escolha o dia primeiro.</p></div>
             </fieldset>
           </div>
 
@@ -736,7 +744,7 @@ html,body{overflow-x:clip}
 <footer>
   <div class="wrap">
     <a class="logo" href="#topo" aria-label="Voltar ao início"><b>LYSIA SILVA</b></a>
-    <p class="note">Studio Lysia Silva · Alto da Conquista, Olinda. Prévia feita pelo Ateliê de Sites.</p>
+    <p class="note">Studio Lysia Silva · Rua Asteca, 374, Alto da Conquista, Olinda. Prévia feita pelo Ateliê de Sites.</p>
   </div>
 </footer>
 
@@ -915,7 +923,24 @@ html,body{overflow-x:clip}
     pes.classList.toggle('on', val('servico') === 'Unhas dos pés');
     qual.classList.toggle('on', val('alergia') === 'sim');
   }
-  f.addEventListener('change', () => { mostrarSub(); erro.textContent = ''; });
+  // horários fixos dela: seg a sáb 8h, 14h e 16h; domingo 9h e 14h30
+  const HORAS = { domingo: ['9h', '14h30'], 'qualquer dia': ['manhã', 'tarde'] };
+  const horasBox = document.getElementById('fc-horas');
+  let diaAtual = '';
+  function renderHoras(){
+    const d = val('dia'); if (!d || d === diaAtual) return; diaAtual = d;
+    const antes = val('periodo');
+    const lista = [...(HORAS[d] || ['8h', '14h', '16h']), 'tanto faz'];
+    horasBox.textContent = '';
+    lista.forEach(h => {
+      const l = document.createElement('label'); l.className = 'fc-opt';
+      const i = document.createElement('input'); i.type = 'radio'; i.name = 'periodo'; i.value = h; i.checked = h === antes;
+      const s = document.createElement('span'); const b = document.createElement('b'); b.textContent = h.charAt(0).toUpperCase() + h.slice(1);
+      s.appendChild(b); l.append(i, s); horasBox.appendChild(l);
+    });
+  }
+  f.addEventListener('change', () => { mostrarSub(); renderHoras(); erro.textContent = ''; });
+  renderHoras();
   mostrarSub();
 
   tel.addEventListener('input', () => {
@@ -927,7 +952,7 @@ html,body{overflow-x:clip}
     if (i === 0 && !val('servico')) return 'Escolha um serviço pra continuar.';
     if (i === 0 && ['Aplicação', 'Manutenção'].includes(val('servico')) && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
     if (i === 0 && val('servico') === 'Unhas dos pés' && !val('pes')) return 'Escolha o serviço dos pés.';
-    if (i === 1 && (!val('dia') || !val('periodo'))) return 'Escolha o dia e o período.';
+    if (i === 1 && (!val('dia') || !val('periodo'))) return 'Escolha o dia e o horário.';
     if (i === 2 && (!val('diabetes') || !val('alergia'))) return 'Responda as duas perguntas, por favor.';
     if (i === 3 && nome.value.trim().split(/\s+/).length < 2) return 'Escreva nome e sobrenome.';
     if (i === 3 && ![10, 11].includes(digitos(tel.value).length)) return 'Confira o WhatsApp com DDD.';
