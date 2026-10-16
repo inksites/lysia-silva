@@ -928,7 +928,7 @@ html,body{overflow-x:clip}
   // horários fixos dela: seg a sáb 8h, 14h e 16h; domingo 9h e 14h30
   const HORAS = { domingo: ['9h', '14h30'], 'qualquer dia': ['manhã', 'tarde'] };
   // agenda real (Google Agenda via Apps Script): horário reservado some pra próxima cliente
-  const AGENDA_URL = '';
+  const AGENDA_URL = 'https://script.google.com/macros/s/AKfycby4sarrOTVlMOZFm7gHelOVykhIZ24dyH-9CAo-svbDOcQWvumMk2PDpWcboKQi0Mm9iA/exec';
   const SEMANA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
   const SEM3 = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
   const fmtHora = hm => { const [h, m] = hm.split(':'); return +h + 'h' + (m === '00' ? '' : m); };
