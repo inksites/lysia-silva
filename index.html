@@ -318,6 +318,15 @@ html,body{overflow-x:clip}
 /* técnicas */
 .pain p{max-width:46ch}
 
+/* blindagem: duas fotos lado a lado */
+#blindagem{background:var(--panel)}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);margin-top:48px;max-width:900px}
+.duo figure{aspect-ratio:3/4;overflow:hidden;border-radius:20px;background:var(--panel-2)}
+.duo img{width:100%;height:100%;object-fit:cover}
+.duo h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.2vw,30px);margin-top:16px;line-height:1.1}
+.duo p{color:var(--text-secondary);font-size:15px;margin-top:6px;max-width:40ch}
+@media (max-width:520px){.duo{gap:14px}.duo h3{font-size:21px}.duo p{font-size:14px}}
+
 /* tabela de preços */
 .precos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);margin-top:48px;align-items:start}
 .preco{background:var(--panel);border-radius:22px;padding:clamp(24px,3vw,40px)}
@@ -510,6 +519,18 @@ html,body{overflow-x:clip}
     </div>
   </section>
 
+  <section id="blindagem">
+    <div class="wrap">
+      <span class="label rv">Blindagem</span>
+      <h2 class="title rv">Sua unha natural, <span class="gloss">mais segura.</span></h2>
+      <p class="lede rv">Pra quem quer manter a própria unha, sem alongar, com mais proteção no dia a dia.</p>
+      <div class="duo stagger">
+        <article class="rv"><figure><img src="assets/blindagem-natural.jpg" alt="Unhas curtas com blindagem natural, brilho discreto" loading="lazy" width="900" height="1200"></figure><h3>Blindagem natural</h3><p>Uma forma de deixar sua unha natural e mais segura.</p></article>
+        <article class="rv"><figure><img src="assets/blindagem-decorada.jpg" alt="Unhas amendoadas com blindagem decorada, francesinha rosa e uma unha com arte" loading="lazy" width="900" height="1200"></figure><h3>Blindagem decorada</h3><p>A mesma proteção, com decoração por cima.</p></article>
+      </div>
+    </div>
+  </section>
+
   <section id="cuidado">
     <div class="wrap how">
       <div>
@@ -642,7 +663,7 @@ html,body{overflow-x:clip}
                 <label class="fc-opt"><input type="radio" name="servico" value="Manutenção"><span><b>Manutenção</b><small>Até 40 dias da aplicação</small></span></label>
                 <label class="fc-opt fc-larga"><input type="radio" name="servico" value="Cutilagem tradicional"><span><b>Cutilagem tradicional</b><small>Cuidado das cutículas</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Banho em gel"><span><b>Banho em gel</b><small>Fortalece sem alongar</small></span></label>
-                <label class="fc-opt"><input type="radio" name="servico" value="Blindagem"><span><b>Blindagem</b><small>Unha natural protegida</small></span></label>
+                <label class="fc-opt"><input type="radio" name="servico" value="Blindagem"><span><b>Blindagem</b><small>Unha natural mais segura</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Postiça realista"><span><b>Postiça realista</b><small>Resultado rápido</small></span></label>
                 <label class="fc-opt"><input type="radio" name="servico" value="Unhas dos pés"><span><b>Unhas dos pés</b><small>Gel, F1 ou fibra</small></span></label>
                 <label class="fc-opt fc-larga"><input type="radio" name="servico" value="Quero uma indicação"><span><b>Não sei ainda</b><small>Quero uma indicação</small></span></label>
