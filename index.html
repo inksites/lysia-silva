@@ -698,14 +698,7 @@ html,body{overflow-x:clip}
             <fieldset>
               <legend>Dia</legend>
               <div class="fc-opts c4" id="fc-dias">
-                <label class="fc-opt"><input type="radio" name="dia" value="segunda"><span><b>Seg</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="terça"><span><b>Ter</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="quarta"><span><b>Qua</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="quinta"><span><b>Qui</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="sexta"><span><b>Sex</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="sábado"><span><b>Sáb</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="domingo"><span><b>Dom</b></span></label>
-                <label class="fc-opt"><input type="radio" name="dia" value="qualquer dia"><span><b>Tanto faz</b></span></label>
+                <p class="fc-ajuda">Consultando horários livres...</p>
               </div>
             </fieldset>
             <fieldset>
@@ -946,53 +939,84 @@ html,body{overflow-x:clip}
     pes.classList.toggle('on', val('servico') === 'Unhas dos pés');
     qual.classList.toggle('on', val('alergia') === 'sim');
   }
-  // horários fixos dela: seg a sáb 8h, 14h e 16h; domingo 9h e 14h30
-  const HORAS = { domingo: ['9h', '14h30'], 'qualquer dia': ['manhã', 'tarde'] };
   // agenda real (Google Agenda via Apps Script): horário reservado some pra próxima cliente
   const AGENDA_URL = 'https://script.google.com/macros/s/AKfycby4sarrOTVlMOZFm7gHelOVykhIZ24dyH-9CAo-svbDOcQWvumMk2PDpWcboKQi0Mm9iA/exec';
   const SEMANA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
   const SEM3 = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
   const fmtHora = hm => { const [h, m] = hm.split(':'); return +h + 'h' + (m === '00' ? '' : m); };
   const fmtData = ymd => ymd.slice(8, 10) + '/' + ymd.slice(5, 7);
-  let modoAgenda = false, diasApi = [], reservado = false;
+  let modoAgenda = false, diasApi = [], reservado = false, agendaPronta = false, agendaPromise = null, ultimaAgenda = 0;
   const diasBox = document.getElementById('fc-dias'), agendaMsg = document.getElementById('fc-agenda-msg');
+  const horasBox = document.getElementById('fc-horas');
+  let diaAtual = '';
+
+  function avisoAgenda(texto){
+    diasBox.textContent = '';
+    const p = document.createElement('p'); p.className = 'fc-ajuda'; p.textContent = texto; diasBox.appendChild(p);
+    horasBox.innerHTML = '<p class="fc-ajuda">Os horários aparecem depois da consulta.</p>';
+  }
+
+  function renderDias(antesDia, antesHora){
+    diasBox.textContent = '';
+    if (!diasApi.length) {
+      agendaMsg.textContent = 'A agenda está cheia nas próximas 2 semanas. Chama a Lysia no WhatsApp que ela vê um encaixe pra você.';
+      avisoAgenda('Nenhum horário livre nas próximas 2 semanas.');
+      return;
+    }
+    agendaMsg.textContent = 'Escolha um horário livre. A lista é atualizada antes de reservar.';
+    diasApi.forEach(d => {
+      const l = document.createElement('label'); l.className = 'fc-opt';
+      const i = document.createElement('input'); i.type = 'radio'; i.name = 'dia'; i.value = d.data; i.checked = d.data === antesDia;
+      const s = document.createElement('span'); const b = document.createElement('b'); b.textContent = SEM3[d.semana];
+      const sm = document.createElement('small'); sm.textContent = fmtData(d.data);
+      s.append(b, sm); l.append(i, s); diasBox.appendChild(l);
+    });
+    diaAtual = '';
+    if (antesDia) renderHoras(antesHora);
+    else horasBox.innerHTML = '<p class="fc-ajuda">Escolha o dia primeiro.</p>';
+    if (antesDia && (!diasApi.some(d => d.data === antesDia && d.horas.includes(antesHora)))) {
+      erro.textContent = 'A agenda mudou e esse horário não está mais livre. Escolha outro, por favor.';
+    }
+  }
+
   function carregarAgenda(){
-    if (!AGENDA_URL) return Promise.resolve();
-    return fetch(AGENDA_URL, { cache: 'no-store' }).then(r => r.json()).then(j => {
+    if (agendaPromise) return agendaPromise;
+    const antesDia = val('dia'), antesHora = val('periodo');
+    agendaPronta = false;
+    agendaMsg.textContent = 'Atualizando os horários livres...';
+    avisoAgenda('Consultando horários livres...');
+    agendaPromise = fetch(AGENDA_URL, { cache: 'no-store' }).then(r => {
+      if (!r.ok) throw new Error('http-' + r.status);
+      return r.json();
+    }).then(j => {
       if (!j.ok) throw new Error(j.erro);
       diasApi = j.dias.filter(d => d.horas.length);
-      modoAgenda = true; diaAtual = '';
-      const antes = val('dia');
-      diasBox.textContent = '';
-      if (!diasApi.length) { agendaMsg.textContent = 'A agenda está cheia nas próximas 2 semanas. Chama a Lysia no WhatsApp que ela vê um encaixe pra você.'; return; }
-      agendaMsg.textContent = 'Escolha um horário livre. Quando você enviar, ele fica reservado pra você.';
-      diasApi.forEach(d => {
-        const l = document.createElement('label'); l.className = 'fc-opt';
-        const i = document.createElement('input'); i.type = 'radio'; i.name = 'dia'; i.value = d.data; i.checked = d.data === antes;
-        const s = document.createElement('span'); const b = document.createElement('b'); b.textContent = SEM3[d.semana];
-        const sm = document.createElement('small'); sm.textContent = fmtData(d.data);
-        s.append(b, sm); l.append(i, s); diasBox.appendChild(l);
-      });
-      horasBox.innerHTML = '<p class="fc-ajuda">Escolha o dia primeiro.</p>';
-      renderHoras();
-    }).catch(() => {}); // fora do ar: segue no modo de preferência
+      modoAgenda = true; agendaPronta = true; ultimaAgenda = Date.now();
+      renderDias(antesDia, antesHora);
+      return true;
+    }).catch(e => {
+      console.error('Falha ao consultar agenda', e);
+      modoAgenda = false; agendaPronta = false; diasApi = [];
+      agendaMsg.textContent = 'Não foi possível consultar a agenda agora. Tente novamente ou fale com a Lysia no WhatsApp.';
+      avisoAgenda('Agenda temporariamente indisponível.');
+      return false;
+    }).finally(() => { agendaPromise = null; });
+    return agendaPromise;
   }
   function quandoTexto(){
     if (!modoAgenda) return `${val('dia')}, ${val('periodo')}`;
     const d = diasApi.find(x => x.data === val('dia'));
     return d ? `${SEMANA[d.semana]}, ${fmtData(d.data)} às ${fmtHora(val('periodo'))}` : '';
   }
-  const horasBox = document.getElementById('fc-horas');
-  let diaAtual = '';
-  function renderHoras(){
+  function renderHoras(preferida){
     const d = val('dia'); if (!d || d === diaAtual) return; diaAtual = d;
-    const antes = val('periodo');
-    const lista = modoAgenda ? ((diasApi.find(x => x.data === d) || {}).horas || []) : [...(HORAS[d] || ['8h', '14h', '16h']), 'tanto faz'];
+    const antes = preferida || val('periodo');
+    const lista = ((diasApi.find(x => x.data === d) || {}).horas || []);
     horasBox.textContent = '';
     lista.forEach(h => {
       const l = document.createElement('label'); l.className = 'fc-opt';
       const i = document.createElement('input'); i.type = 'radio'; i.name = 'periodo'; i.value = h; i.checked = h === antes;
-      const s = document.createElement('span'); const b = document.createElement('b'); b.textContent = modoAgenda ? fmtHora(h) : h.charAt(0).toUpperCase() + h.slice(1);
+      const s = document.createElement('span'); const b = document.createElement('b'); b.textContent = fmtHora(h);
       s.appendChild(b); l.append(i, s); horasBox.appendChild(l);
     });
   }
@@ -1010,6 +1034,7 @@ html,body{overflow-x:clip}
     if (i === 0 && !val('servico')) return 'Escolha um serviço pra continuar.';
     if (i === 0 && ['Aplicação', 'Manutenção'].includes(val('servico')) && !val('tecnica')) return 'Escolha a técnica, ou "Ela me indica".';
     if (i === 0 && val('servico') === 'Unhas dos pés' && !val('pes')) return 'Escolha o serviço dos pés.';
+    if (i === 1 && !agendaPronta) return 'Aguarde a agenda carregar. Se não abrir, tente novamente.';
     if (i === 1 && (!val('dia') || !val('periodo'))) return 'Escolha o dia e o horário.';
     if (i === 2 && (!val('diabetes') || !val('alergia'))) return 'Responda as duas perguntas, por favor.';
     if (i === 3 && nome.value.trim().split(/\s+/).length < 2) return 'Escreva nome e sobrenome.';
@@ -1069,12 +1094,17 @@ html,body{overflow-x:clip}
     if (topo < 0) f.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   }
 
-  seguir.addEventListener('click', () => {
+  seguir.addEventListener('click', async () => {
     const p = problema(atual);
     if (p) { erro.textContent = p; return; }
     ir(atual + 1);
+    if (atual === 1) await carregarAgenda();
   });
-  voltar.addEventListener('click', () => ir(Math.max(0, atual - 1)));
+  voltar.addEventListener('click', () => {
+    const destino = Math.max(0, atual - 1);
+    ir(destino);
+    if (destino === 1) carregarAgenda();
+  });
 
   function lembrarDados(){
     try {
@@ -1083,25 +1113,31 @@ html,body{overflow-x:clip}
     } catch (e) {}
   }
   enviar.addEventListener('click', ev => {
-    if (!modoAgenda) { lembrarDados(); return; }
+    if (enviar.dataset.reservado) { lembrarDados(); return; }
     ev.preventDefault();
+    if (!agendaPronta || !modoAgenda) { erro.textContent = 'A agenda não está disponível. Atualize os horários antes de enviar.'; carregarAgenda(); return; }
     if (enviar.dataset.ocupado) return;
     enviar.dataset.ocupado = '1'; const rotulo = enviar.textContent; enviar.textContent = 'Reservando...';
     const janela = window.open('', '_blank'); // abre já, pro navegador não bloquear
     const corpo = JSON.stringify({ data: val('dia'), hora: val('periodo'), servico: servicoTexto(), nome: nome.value.trim(), tel: tel.value, site: document.getElementById('fc-site').value });
     fetch(AGENDA_URL, { method: 'POST', body: corpo }).then(r => r.json()).then(j => {
-      if (j.ok) { reservado = true; lembrarDados(); return; }
-      if (j.erro === 'ocupado') throw new Error('ocupado');
+      if (!j.ok) throw new Error(j.erro || 'falha');
+      reservado = true; lembrarDados();
     }).then(() => {
       const link = `https://wa.me/${WHATS}?text=${encodeURIComponent(mensagem())}`;
+      enviar.href = link; enviar.dataset.reservado = '1';
       if (janela) janela.location.href = link; else location.href = link;
       if (reservado) agendaMsg.textContent = 'Horário reservado! Termine o envio no WhatsApp.';
     }).catch(e => {
       if (janela) janela.close();
       if (e.message === 'ocupado') { carregarAgenda().then(() => { ir(1); erro.textContent = 'Esse horário acabou de ser reservado por outra pessoa. Escolha outro, por favor.'; }); }
-      else { const link = `https://wa.me/${WHATS}?text=${encodeURIComponent(mensagem())}`; location.href = link; }
-    }).finally(() => { delete enviar.dataset.ocupado; enviar.textContent = rotulo; });
+      else { erro.textContent = 'Não foi possível reservar agora. Tente novamente; se continuar, fale com a Lysia pelo botão ao lado.'; }
+    }).finally(() => { delete enviar.dataset.ocupado; enviar.textContent = enviar.dataset.reservado ? 'Abrir WhatsApp novamente' : rotulo; });
   });
+
+  setInterval(() => { if (document.visibilityState === 'visible' && atual === 1) carregarAgenda(); }, 60000);
+  window.addEventListener('focus', () => { if (atual === 1 && Date.now() - ultimaAgenda > 15000) carregarAgenda(); });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && atual === 1) carregarAgenda(); });
 })();
 </script>
 </body>
