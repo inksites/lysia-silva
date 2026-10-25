@@ -370,6 +370,26 @@ html,body{overflow-x:clip}
 .visit .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
 @media (max-width:860px){.visit{grid-template-columns:1fr}}
 
+/* agenda de dezembro */
+#dezembro{padding-top:clamp(72px,9vw,128px);scroll-margin-top:72px}
+.dezembro{position:relative;overflow:hidden;border:1px solid rgba(157,119,55,.22);border-radius:30px;background:linear-gradient(135deg,#fffdf8 0%,#f8f0e7 55%,#f3e4e4 100%);padding:clamp(30px,5vw,72px);box-shadow:0 24px 70px rgba(75,48,37,.08)}
+.dezembro:before,.dezembro:after{content:"";position:absolute;border:1px solid rgba(171,127,49,.28);border-radius:50%;pointer-events:none}
+.dezembro:before{width:280px;height:280px;right:-120px;top:-150px}
+.dezembro:after{width:170px;height:170px;right:-35px;top:-95px}
+.dezembro-grid{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:start}
+.dezembro .label{color:#8b632b}
+.dezembro h2{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,70px);line-height:.98;margin-top:18px;max-width:9ch}
+.dezembro .lede{color:var(--text-secondary);margin-top:18px;max-width:40ch}
+.dezembro .btn{margin-top:28px;background:#7d5725}
+.regras-dezembro{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.regras-dezembro li{min-height:128px;padding:20px;border:1px solid rgba(157,119,55,.17);border-radius:18px;background:rgba(255,255,255,.7)}
+.regras-dezembro li:first-child{grid-column:1/-1;background:#fffaf1}
+.regras-dezembro li:last-child{grid-column:1/-1}
+.regras-dezembro b{display:block;font-family:var(--serif);font-size:25px;font-weight:400;color:#6f4a1f}
+.regras-dezembro span{display:block;color:var(--text-secondary);font-size:14px;line-height:1.5;margin-top:5px}
+@media (max-width:760px){.dezembro-grid{grid-template-columns:1fr}.regras-dezembro{grid-template-columns:1fr 1fr}.regras-dezembro li{min-height:0}.dezembro h2{max-width:none}}
+@media (max-width:480px){.regras-dezembro{grid-template-columns:1fr}.regras-dezembro li:first-child,.regras-dezembro li:last-child{grid-column:auto}}
+
 /* ficha de agendamento */
 .ficha{background:var(--canvas);margin:clamp(10px,1.4vw,18px);border-radius:22px;padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;min-height:560px;box-shadow:0 18px 50px rgba(46,36,39,.07)}
 .fc-prog{display:flex;gap:6px}
@@ -634,13 +654,34 @@ html,body{overflow-x:clip}
     </div>
   </section>
 
+  <section id="dezembro">
+    <div class="wrap">
+      <div class="dezembro">
+        <div class="dezembro-grid">
+          <div>
+            <span class="label">Agenda de dezembro</span>
+            <h2>Seu horário nas festas.</h2>
+            <p class="lede">Escolha um horário livre pelo site. A vaga fica em pré-reserva e é confirmada pela Lysia após o sinal.</p>
+            <a class="btn" href="#agendar">Ver horários de dezembro</a>
+          </div>
+          <ul class="regras-dezembro" aria-label="Regras para agendamentos de dezembro">
+            <li><b>30% de sinal</b><span>A vaga é confirmada após o pagamento. Em caso de falta, o sinal não é devolvido.</span></li>
+            <li><b>Chegue 10 minutos antes</b><span>A tolerância máxima de atraso é de 5 minutos.</span></li>
+            <li><b>Venha sem acompanhantes</b><span>Não leve acompanhantes nem crianças, para um atendimento tranquilo.</span></li>
+            <li><b>Precisa remarcar?</b><span>Avise com pelo menos 2 dias de antecedência para consultar outra data disponível.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="agendar">
     <div class="wrap">
       <div class="visit rv">
         <div class="info">
           <span class="label">Agendar</span>
           <h2>Seu horário, <span class="gloss in">do seu jeito.</span></h2>
-          <p>Preencha a ficha em menos de um minuto. Ela chega pronta no WhatsApp da Lysia, que confirma o seu horário.</p>
+          <p>Preencha a ficha em menos de um minuto. O horário fica em pré-reserva e é confirmado pela Lysia após o sinal de 30%.</p>
           <dl>
             <dt>Onde</dt><dd>Rua Asteca, 374 · Alto da Conquista, Olinda<br><span class="ref">Depois da Igreja Católica São Sebastião</span></dd>
             <dt>Horários</dt><dd>Segunda a sábado: 8h, 14h e 16h<br>Domingo: 9h e 14h30</dd>
@@ -743,13 +784,14 @@ html,body{overflow-x:clip}
             <h3>Confere se está tudo certo</h3>
             <dl class="fc-resumo" id="fc-resumo"></dl>
             <p class="fc-foto">Tem uma foto de referência? Depois de enviar, é só mandar ela na mesma conversa.</p>
+            <label class="fc-lembrar"><input type="checkbox" id="fc-regras"> Li e aceito as regras de agendamento, incluindo o sinal de 30%.</label>
           </div>
 
           <p class="fc-erro" id="fc-erro" role="alert"></p>
           <div class="fc-nav">
             <button type="button" class="fc-voltar" id="fc-voltar" hidden>Voltar</button>
             <button type="button" class="btn fc-seguir" id="fc-seguir">Continuar</button>
-            <a class="btn fc-enviar" id="fc-enviar" href="https://wa.me/5581973150581" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+            <a class="btn fc-enviar" id="fc-enviar" href="https://wa.me/5581973150581" target="_blank" rel="noopener">Fazer pré-reserva</a>
           </div>
         </form>
       </div>
@@ -1057,7 +1099,8 @@ html,body{overflow-x:clip}
       `*Nome:* ${nome.value.trim()}`,
       `*WhatsApp:* ${tel.value}`,
       `*Serviço:* ${servicoTexto()}`,
-      modoAgenda ? `*Horário:* ${quandoTexto()}${reservado ? ' (reservado pelo site)' : ''}` : `*Preferência:* ${quandoTexto()}`,
+      modoAgenda ? `*Horário:* ${quandoTexto()}${reservado ? ' (pré-reserva feita pelo site)' : ''}` : `*Preferência:* ${quandoTexto()}`,
+      '*Status:* pré-reserva — aguardo as instruções para o sinal de 30%',
       `*Diabetes:* ${val('diabetes') === 'sim' ? 'SIM ⚠️' : 'não'}`,
       `*Alergia a gel/preparador:* ${alergia}${val('alergia') === 'sim' ? ' ⚠️' : ''}`
     ].join('\n');
@@ -1070,7 +1113,8 @@ html,body{overflow-x:clip}
       ['Diabetes', val('diabetes'), val('diabetes') === 'sim'],
       ['Alergia', val('alergia') === 'sim' ? `sim: ${f.alergia_qual.value.trim() || 'conto na conversa'}` : val('alergia'), val('alergia') === 'sim'],
       ['Nome', nome.value.trim()],
-      ['WhatsApp', tel.value]
+      ['WhatsApp', tel.value],
+      ['Confirmação', 'Após o sinal de 30%']
     ];
     const r = document.getElementById('fc-resumo'); r.textContent = '';
     linhas.forEach(([k, v, alerta]) => {
@@ -1115,9 +1159,10 @@ html,body{overflow-x:clip}
   enviar.addEventListener('click', ev => {
     if (enviar.dataset.reservado) { lembrarDados(); return; }
     ev.preventDefault();
+    if (!document.getElementById('fc-regras').checked) { erro.textContent = 'Leia e aceite as regras de agendamento para continuar.'; return; }
     if (!agendaPronta || !modoAgenda) { erro.textContent = 'A agenda não está disponível. Atualize os horários antes de enviar.'; carregarAgenda(); return; }
     if (enviar.dataset.ocupado) return;
-    enviar.dataset.ocupado = '1'; const rotulo = enviar.textContent; enviar.textContent = 'Reservando...';
+    enviar.dataset.ocupado = '1'; const rotulo = enviar.textContent; enviar.textContent = 'Fazendo pré-reserva...';
     const janela = window.open('', '_blank'); // abre já, pro navegador não bloquear
     const corpo = JSON.stringify({ data: val('dia'), hora: val('periodo'), servico: servicoTexto(), nome: nome.value.trim(), tel: tel.value, site: document.getElementById('fc-site').value });
     fetch(AGENDA_URL, { method: 'POST', body: corpo }).then(r => r.json()).then(j => {
@@ -1127,10 +1172,11 @@ html,body{overflow-x:clip}
       const link = `https://wa.me/${WHATS}?text=${encodeURIComponent(mensagem())}`;
       enviar.href = link; enviar.dataset.reservado = '1';
       if (janela) janela.location.href = link; else location.href = link;
-      if (reservado) agendaMsg.textContent = 'Horário reservado! Termine o envio no WhatsApp.';
+      if (reservado) agendaMsg.textContent = 'Pré-reserva criada. Termine no WhatsApp; a vaga é confirmada após o sinal de 30%.';
     }).catch(e => {
       if (janela) janela.close();
       if (e.message === 'ocupado') { carregarAgenda().then(() => { ir(1); erro.textContent = 'Esse horário acabou de ser reservado por outra pessoa. Escolha outro, por favor.'; }); }
+      else if (e.message === 'temporario') { erro.textContent = 'Muitas pessoas estão agendando agora. Aguarde alguns segundos e tente novamente.'; }
       else { erro.textContent = 'Não foi possível reservar agora. Tente novamente; se continuar, fale com a Lysia pelo botão ao lado.'; }
     }).finally(() => { delete enviar.dataset.ocupado; enviar.textContent = enviar.dataset.reservado ? 'Abrir WhatsApp novamente' : rotulo; });
   });
