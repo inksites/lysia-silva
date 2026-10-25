@@ -372,11 +372,15 @@ html,body{overflow-x:clip}
 
 /* agenda de dezembro */
 #dezembro{padding-top:clamp(72px,9vw,128px);scroll-margin-top:72px}
-.dezembro{position:relative;overflow:hidden;border:1px solid rgba(157,119,55,.22);border-radius:30px;background:linear-gradient(135deg,#fffdf8 0%,#f8f0e7 55%,#f3e4e4 100%);padding:clamp(30px,5vw,72px);box-shadow:0 24px 70px rgba(75,48,37,.08)}
+.dezembro{position:relative;overflow:hidden;border:1px solid rgba(157,119,55,.22);border-radius:30px;background:linear-gradient(135deg,#fffdf8 0%,#f8f0e7 55%,#f3e4e4 100%);padding:clamp(20px,3vw,42px);box-shadow:0 24px 70px rgba(75,48,37,.08)}
 .dezembro:before,.dezembro:after{content:"";position:absolute;border:1px solid rgba(171,127,49,.28);border-radius:50%;pointer-events:none}
 .dezembro:before{width:280px;height:280px;right:-120px;top:-150px}
 .dezembro:after{width:170px;height:170px;right:-35px;top:-95px}
-.dezembro-grid{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:start}
+.dezembro-grid{position:relative;display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(24px,4vw,58px);align-items:center}
+.dezembro-intro{position:relative;isolation:isolate;min-height:500px;overflow:hidden;border-radius:22px;background:#f8f1e8;box-shadow:0 18px 46px rgba(89,57,22,.14)}
+.dezembro-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+.dezembro-intro:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,253,248,.96) 0%,rgba(255,253,248,.86) 34%,rgba(255,253,248,.06) 68%)}
+.dezembro-copy{padding:clamp(24px,3.5vw,42px)}
 .dezembro .label{color:#8b632b}
 .dezembro h2{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,70px);line-height:.98;margin-top:18px;max-width:9ch}
 .dezembro .lede{color:var(--text-secondary);margin-top:18px;max-width:40ch}
@@ -387,7 +391,8 @@ html,body{overflow-x:clip}
 .regras-dezembro li:last-child{grid-column:1/-1}
 .regras-dezembro b{display:block;font-family:var(--serif);font-size:25px;font-weight:400;color:#6f4a1f}
 .regras-dezembro span{display:block;color:var(--text-secondary);font-size:14px;line-height:1.5;margin-top:5px}
-@media (max-width:760px){.dezembro-grid{grid-template-columns:1fr}.regras-dezembro{grid-template-columns:1fr 1fr}.regras-dezembro li{min-height:0}.dezembro h2{max-width:none}}
+@media (max-width:760px){.dezembro-grid{grid-template-columns:1fr}.dezembro-intro{min-height:520px}.regras-dezembro{grid-template-columns:1fr 1fr}.regras-dezembro li{min-height:0}.dezembro h2{max-width:none}}
+@media (max-width:560px){.dezembro{padding:12px}.dezembro-intro{min-height:500px}.dezembro-copy{padding:26px 22px}.dezembro h2{font-size:44px;max-width:8ch}.regras-dezembro{padding:8px}}
 @media (max-width:480px){.regras-dezembro{grid-template-columns:1fr}.regras-dezembro li:first-child,.regras-dezembro li:last-child{grid-column:auto}}
 
 /* ficha de agendamento */
@@ -658,11 +663,14 @@ html,body{overflow-x:clip}
     <div class="wrap">
       <div class="dezembro">
         <div class="dezembro-grid">
-          <div>
-            <span class="label">Agenda de dezembro</span>
-            <h2>Seu horário nas festas.</h2>
-            <p class="lede">Escolha um horário livre pelo site. A vaga fica em pré-reserva e é confirmada pela Lysia após o sinal.</p>
-            <a class="btn" href="#agendar">Ver horários de dezembro</a>
+          <div class="dezembro-intro">
+            <img class="dezembro-art" src="assets/agenda-dezembro.jpg" alt="" loading="lazy" width="1122" height="1402">
+            <div class="dezembro-copy">
+              <span class="label">Agenda de dezembro</span>
+              <h2>Seu horário nas festas.</h2>
+              <p class="lede">Escolha um horário livre pelo site. A vaga fica em pré-reserva e é confirmada pela Lysia após o sinal.</p>
+              <a class="btn" href="#agendar">Ver horários de dezembro</a>
+            </div>
           </div>
           <ul class="regras-dezembro" aria-label="Regras para agendamentos de dezembro">
             <li><b>30% de sinal</b><span>A vaga é confirmada após o pagamento. Em caso de falta, o sinal não é devolvido.</span></li>
