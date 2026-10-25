@@ -681,7 +681,7 @@ html,body{overflow-x:clip}
         <div class="info">
           <span class="label">Agendar</span>
           <h2>Seu horário, <span class="gloss in">do seu jeito.</span></h2>
-          <p>Preencha a ficha em menos de um minuto. O horário fica em pré-reserva e é confirmado pela Lysia após o sinal de 30%.</p>
+          <p>Preencha a ficha em menos de um minuto. A Lysia confirma o horário; para dezembro, a vaga é confirmada após o sinal de 30%.</p>
           <dl>
             <dt>Onde</dt><dd>Rua Asteca, 374 · Alto da Conquista, Olinda<br><span class="ref">Depois da Igreja Católica São Sebastião</span></dd>
             <dt>Horários</dt><dd>Segunda a sábado: 8h, 14h e 16h<br>Domingo: 9h e 14h30</dd>
@@ -784,7 +784,7 @@ html,body{overflow-x:clip}
             <h3>Confere se está tudo certo</h3>
             <dl class="fc-resumo" id="fc-resumo"></dl>
             <p class="fc-foto">Tem uma foto de referência? Depois de enviar, é só mandar ela na mesma conversa.</p>
-            <label class="fc-lembrar"><input type="checkbox" id="fc-regras"> Li e aceito as regras de agendamento, incluindo o sinal de 30%.</label>
+            <label class="fc-lembrar" id="fc-regras-box" hidden><input type="checkbox" id="fc-regras"> Li e aceito as regras de dezembro, incluindo o sinal de 30%.</label>
           </div>
 
           <p class="fc-erro" id="fc-erro" role="alert"></p>
@@ -1100,11 +1100,13 @@ html,body{overflow-x:clip}
       `*WhatsApp:* ${tel.value}`,
       `*Serviço:* ${servicoTexto()}`,
       modoAgenda ? `*Horário:* ${quandoTexto()}${reservado ? ' (pré-reserva feita pelo site)' : ''}` : `*Preferência:* ${quandoTexto()}`,
-      '*Status:* pré-reserva — aguardo as instruções para o sinal de 30%',
+      ehDezembro() ? '*Status:* pré-reserva — aguardo as instruções para o sinal de 30%' : '',
       `*Diabetes:* ${val('diabetes') === 'sim' ? 'SIM ⚠️' : 'não'}`,
       `*Alergia a gel/preparador:* ${alergia}${val('alergia') === 'sim' ? ' ⚠️' : ''}`
-    ].join('\n');
+    ].filter(Boolean).join('\n');
   }
+
+  function ehDezembro(){ return modoAgenda && val('dia').slice(5, 7) === '12'; }
 
   function resumo(){
     const linhas = [
@@ -1113,9 +1115,11 @@ html,body{overflow-x:clip}
       ['Diabetes', val('diabetes'), val('diabetes') === 'sim'],
       ['Alergia', val('alergia') === 'sim' ? `sim: ${f.alergia_qual.value.trim() || 'conto na conversa'}` : val('alergia'), val('alergia') === 'sim'],
       ['Nome', nome.value.trim()],
-      ['WhatsApp', tel.value],
-      ['Confirmação', 'Após o sinal de 30%']
+      ['WhatsApp', tel.value]
     ];
+    if (ehDezembro()) linhas.push(['Confirmação', 'Após o sinal de 30%']);
+    const regrasBox = document.getElementById('fc-regras-box');
+    regrasBox.hidden = !ehDezembro();
     const r = document.getElementById('fc-resumo'); r.textContent = '';
     linhas.forEach(([k, v, alerta]) => {
       const d = document.createElement('div'); if (alerta) d.className = 'alerta';
@@ -1159,7 +1163,7 @@ html,body{overflow-x:clip}
   enviar.addEventListener('click', ev => {
     if (enviar.dataset.reservado) { lembrarDados(); return; }
     ev.preventDefault();
-    if (!document.getElementById('fc-regras').checked) { erro.textContent = 'Leia e aceite as regras de agendamento para continuar.'; return; }
+    if (ehDezembro() && !document.getElementById('fc-regras').checked) { erro.textContent = 'Leia e aceite as regras de dezembro para continuar.'; return; }
     if (!agendaPronta || !modoAgenda) { erro.textContent = 'A agenda não está disponível. Atualize os horários antes de enviar.'; carregarAgenda(); return; }
     if (enviar.dataset.ocupado) return;
     enviar.dataset.ocupado = '1'; const rotulo = enviar.textContent; enviar.textContent = 'Fazendo pré-reserva...';
@@ -1172,7 +1176,7 @@ html,body{overflow-x:clip}
       const link = `https://wa.me/${WHATS}?text=${encodeURIComponent(mensagem())}`;
       enviar.href = link; enviar.dataset.reservado = '1';
       if (janela) janela.location.href = link; else location.href = link;
-      if (reservado) agendaMsg.textContent = 'Pré-reserva criada. Termine no WhatsApp; a vaga é confirmada após o sinal de 30%.';
+      if (reservado) agendaMsg.textContent = ehDezembro() ? 'Pré-reserva criada. Termine no WhatsApp; a vaga é confirmada após o sinal de 30%.' : 'Pré-reserva criada. Termine o envio no WhatsApp.';
     }).catch(e => {
       if (janela) janela.close();
       if (e.message === 'ocupado') { carregarAgenda().then(() => { ir(1); erro.textContent = 'Esse horário acabou de ser reservado por outra pessoa. Escolha outro, por favor.'; }); }
