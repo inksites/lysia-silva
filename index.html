@@ -450,9 +450,13 @@ html,body{overflow-x:clip}
 .fc-enviar{display:none}
 .ficha.fim .fc-seguir{display:none}
 .ficha.fim .fc-enviar{display:inline-flex}
+.fc-ok{margin-top:14px;padding:14px 16px;border-radius:12px;background:#F4E9EA;font-size:14.5px;line-height:1.5;color:var(--text-primary)}
+.fc-ok strong{color:#8E3B4A}
+.fc-enviar.pronto{animation:fcPulso 1.6s ease-in-out infinite}
+@keyframes fcPulso{50%{box-shadow:0 0 0 8px rgba(158,104,114,.18)}}
 @media (max-width:860px){.ficha{order:-1}}
 @media (max-width:480px){.fc-opts.c3{grid-template-columns:1fr 1fr}.fc-resumo div{grid-template-columns:1fr;gap:2px}.ficha{min-height:0}}
-@media (prefers-reduced-motion:reduce){.fc-passo.on,.fc-sub.on{animation:none}}
+@media (prefers-reduced-motion:reduce){.fc-passo.on,.fc-sub.on,.fc-enviar.pronto{animation:none}}
 
 /* botão flutuante do WhatsApp */
 .wa{position:fixed;right:18px;bottom:18px;z-index:30;width:58px;height:58px;border-radius:50%;background:var(--ink);display:grid;place-items:center;box-shadow:0 8px 24px rgba(42,35,33,.25);transition:transform .3s var(--ease-out)}
@@ -795,6 +799,7 @@ html,body{overflow-x:clip}
             <label class="fc-lembrar" id="fc-regras-box" hidden><input type="checkbox" id="fc-regras"> Li e aceito as regras de dezembro, incluindo o sinal de 30%.</label>
           </div>
 
+          <p class="fc-ok" id="fc-ok" role="status" hidden></p>
           <p class="fc-erro" id="fc-erro" role="alert"></p>
           <div class="fc-nav">
             <button type="button" class="fc-voltar" id="fc-voltar" hidden>Voltar</button>
@@ -1175,22 +1180,24 @@ html,body{overflow-x:clip}
     if (!agendaPronta || !modoAgenda) { erro.textContent = 'A agenda não está disponível. Atualize os horários antes de enviar.'; carregarAgenda(); return; }
     if (enviar.dataset.ocupado) return;
     enviar.dataset.ocupado = '1'; const rotulo = enviar.textContent; enviar.textContent = 'Fazendo pré-reserva...';
-    const janela = window.open('', '_blank'); // abre já, pro navegador não bloquear
+    // sem aba aberta por script: o celular só abre o app do WhatsApp direto quando a própria cliente toca no link
     const corpo = JSON.stringify({ data: val('dia'), hora: val('periodo'), servico: servicoTexto(), nome: nome.value.trim(), tel: tel.value, site: document.getElementById('fc-site').value });
     fetch(AGENDA_URL, { method: 'POST', body: corpo }).then(r => r.json()).then(j => {
       if (!j.ok) throw new Error(j.erro || 'falha');
       reservado = true; lembrarDados();
     }).then(() => {
       const link = `https://wa.me/${WHATS}?text=${encodeURIComponent(mensagem())}`;
-      enviar.href = link; enviar.dataset.reservado = '1';
-      if (janela) janela.location.href = link; else location.href = link;
-      if (reservado) agendaMsg.textContent = ehDezembro() ? 'Pré-reserva criada. Termine no WhatsApp; a vaga é confirmada após o sinal de 30%.' : 'Pré-reserva criada. Termine o envio no WhatsApp.';
+      enviar.href = link; enviar.target = '_self'; enviar.dataset.reservado = '1'; enviar.classList.add('pronto');
+      voltar.hidden = true;
+      const ok = document.getElementById('fc-ok');
+      ok.innerHTML = '<strong>Horário separado!</strong> Agora toque em <strong>Enviar no WhatsApp</strong> e mande a mensagem para a Lysia.' + (ehDezembro() ? ' A vaga é confirmada após o sinal de 30%.' : '');
+      ok.hidden = false;
+      agendaMsg.textContent = 'Pré-reserva criada. Termine o envio no WhatsApp.';
     }).catch(e => {
-      if (janela) janela.close();
       if (e.message === 'ocupado') { carregarAgenda().then(() => { ir(1); erro.textContent = 'Esse horário acabou de ser reservado por outra pessoa. Escolha outro, por favor.'; }); }
       else if (e.message === 'temporario') { erro.textContent = 'Muitas pessoas estão agendando agora. Aguarde alguns segundos e tente novamente.'; }
       else { erro.textContent = 'Não foi possível reservar agora. Tente novamente; se continuar, fale com a Lysia pelo botão ao lado.'; }
-    }).finally(() => { delete enviar.dataset.ocupado; enviar.textContent = enviar.dataset.reservado ? 'Abrir WhatsApp novamente' : rotulo; });
+    }).finally(() => { delete enviar.dataset.ocupado; enviar.textContent = enviar.dataset.reservado ? 'Enviar no WhatsApp' : rotulo; });
   });
 
   setInterval(() => { if (document.visibilityState === 'visible' && atual === 1) carregarAgenda(); }, 60000);
