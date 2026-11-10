@@ -1,12 +1,13 @@
 /* ============================================================
    TEMA DE NATAL — dezembro
-   Camada leve: paleta (vinho e ouro), a mensagem de boas festas
-   e um único retrato recortado na seção Quem atende.
-   A capa NÃO muda: continua assets/lysia-capa.jpg, com o fade
-   original. As fotos originais ficam intactas:
-   - assets/lysia-capa.jpg
+   Camada leve: paleta (vinho e ouro), a mensagem de boas festas,
+   a capa com jaleco vinho e o retrato recortado em Quem atende.
+   As fotos originais ficam intactas:
+   - assets/lysia-capa.jpg  (capa bege; o HTML ainda aponta pra ela)
    - assets/lysia.jpg
-   O retrato de dezembro é assets/lysia-natal.webp (fundo removido).
+   Arquivos de dezembro:
+   - assets/lysia-capa-natal.jpg  (mesma capa, jaleco vinho, mesmo enquadramento)
+   - assets/lysia-natal.webp      (retrato de gorro, fundo removido)
 
    PARA VOLTAR AO VISUAL DO ANO, nesta ordem:
    1. No index.html:
@@ -17,12 +18,15 @@
         e width/height para 900 e 1200;
       - devolva theme-color para #FAF7F4 e o favicon original
         (anotados no <head>).
-      A capa não precisa de edição.
+      - devolva o preload para assets/lysia-capa.jpg.
+      A capa em si volta sozinha ao apagar este arquivo
+      (o HTML continua em assets/lysia-capa.jpg).
    2. No 404.html: devolva as três cores do :root anotadas lá.
-   3. Apague este arquivo e assets/lysia-natal.webp.
+   3. Apague este arquivo, assets/lysia-capa-natal.jpg e assets/lysia-natal.webp.
       Não apague lysia-capa.jpg nem lysia.jpg.
 
-   Tirar a classe "natal" desliga a paleta. O arco e a foto
+   Tirar a classe "natal" desliga a paleta e devolve a capa bege.
+   O arco e a foto
    originais de Quem atende só voltam quando o src do passo 1
    também é restaurado (o arco em si volta com este arquivo).
    ============================================================ */
@@ -35,6 +39,12 @@ body.natal{
   --mocha-light:#F4E6D0;
   --natal-gold:#A68448;
   --natal-wine:#642833;
+}
+
+/* capa vinho: mesma posição (50% 20% no HTML), cover e o mesmo degradê.
+   O arquivo tem o mesmo tamanho em pixels da capa bege, sem corte extra. */
+body.natal .hero .photo{
+  background-image:url("assets/lysia-capa-natal.jpg") !important;
 }
 
 body.natal .gloss{
