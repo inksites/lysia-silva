@@ -1,18 +1,22 @@
 /* ============================================================
    TEMA DE NATAL — dezembro
    Camada leve: paleta (vinho e ouro), a mensagem de boas festas,
-   a capa com jaleco vinho e o retrato recortado em Quem atende.
+   a capa com jaleco vinho, o retrato recortado em Quem atende
+   e enfeites discretos nos cantos das seções.
    As fotos originais ficam intactas:
    - assets/lysia-capa.jpg  (capa bege; o HTML ainda aponta pra ela)
    - assets/lysia.jpg
    Arquivos de dezembro:
-   - assets/lysia-capa-natal.jpg  (mesma capa, jaleco vinho, mesmo enquadramento)
+   - assets/lysia-capa-natal.jpg  (mesma capa, jaleco vinho, mesmo enquadramento;
+     o "Feliz Natal!" foi descido na imagem para não cortar no degradê)
    - assets/lysia-natal.webp      (retrato de gorro, fundo removido)
+   - assets/natal/                (pinheiro, azevinho, bola e estrela, SVG)
 
    PARA VOLTAR AO VISUAL DO ANO, nesta ordem:
    1. No index.html:
       - apague o <link> deste arquivo, a classe "natal" do <body>,
-        a <section id="natal"> e os comentários "TEMA DE NATAL";
+        a <section id="natal"> e os comentários "TEMA DE NATAL"
+        (inclui cada <img class="natal-enfeite">);
       - na seção #sobre, volte o src para assets/lysia.jpg,
         o alt para "Lysia Silva, nail designer, segurando cartela de cores"
         e width/height para 900 e 1200;
@@ -22,7 +26,8 @@
       A capa em si volta sozinha ao apagar este arquivo
       (o HTML continua em assets/lysia-capa.jpg).
    2. No 404.html: devolva as três cores do :root anotadas lá.
-   3. Apague este arquivo, assets/lysia-capa-natal.jpg e assets/lysia-natal.webp.
+   3. Apague este arquivo, assets/lysia-capa-natal.jpg,
+      assets/lysia-natal.webp e a pasta assets/natal/.
       Não apague lysia-capa.jpg nem lysia.jpg.
 
    Tirar a classe "natal" desliga a paleta e devolve a capa bege.
@@ -160,4 +165,34 @@ body.natal #sobre figure img{
     margin-inline:auto;
   }
   body.natal #sobre figure img{width:100%}
+}
+
+/* enfeites: só nos vãos da seção, nunca por cima do texto.
+   O .wrap fica acima, então foto e botão cobrem o desenho se encostar. */
+body.natal .natal-enfeite{
+  position:absolute;
+  z-index:0;
+  display:block;
+  height:auto;
+  pointer-events:none;
+  user-select:none;
+}
+body.natal .wrap{position:relative;z-index:1}
+body.natal .enfeite-natal-ramo{top:10px;left:18px;width:132px;opacity:.42}
+body.natal .enfeite-natal-bola{right:26px;bottom:18px;width:40px;opacity:.58}
+body.natal .enfeite-trabalhos{top:36px;right:34px;width:16px;opacity:.55}
+body.natal .enfeite-tecnicas{left:22px;bottom:22px;width:84px;opacity:.4;transform:rotate(-10deg)}
+body.natal .enfeite-cuidado{right:24px;bottom:20px;width:124px;opacity:.36;transform:scaleX(-1) rotate(8deg)}
+body.natal .enfeite-sobre{top:28px;right:36px;width:15px;opacity:.5}
+body.natal .enfeite-duvidas{left:30px;bottom:24px;width:32px;opacity:.52}
+body.natal .enfeite-dezembro{top:18px;right:22px;width:72px;opacity:.4;transform:rotate(-12deg)}
+@media (max-width:860px){
+  body.natal .enfeite-natal-ramo{top:8px;left:6px;width:72px;opacity:.34}
+  body.natal .enfeite-trabalhos{top:22px;right:12px;width:13px}
+  body.natal .enfeite-tecnicas{left:4px;bottom:12px;width:58px}
+  body.natal .enfeite-duvidas{left:10px;bottom:14px;width:24px}
+  body.natal .enfeite-natal-bola,
+  body.natal .enfeite-cuidado,
+  body.natal .enfeite-sobre,
+  body.natal .enfeite-dezembro{display:none}
 }
