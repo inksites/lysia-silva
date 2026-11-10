@@ -18,7 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/lysia-capa.jpg">
+<!-- TEMA DE NATAL: preload original assets/lysia-capa.jpg -->
+<link rel="preload" as="image" href="assets/lysia-natal.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"NailSalon","name":"Studio Lysia Silva","telephone":"+55 81 97315-0581","address":{"@type":"PostalAddress","streetAddress":"Rua Asteca, 374, Alto da Conquista","addressLocality":"Olinda","addressRegion":"PE","addressCountry":"BR"},"image":"https://studiolysiasilva.com.br/assets/lysia-capa.jpg","sameAs":["https://www.instagram.com/studiolysiasilva/"]}
 </script>
@@ -502,6 +503,7 @@ html,body{overflow-x:clip}
       </div>
     </div>
     <div class="frame" aria-hidden="true">
+      <!-- TEMA DE NATAL: a capa original continua aqui (assets/lysia-capa.jpg, position 50% 20%). natal.css cobre com assets/lysia-natal.jpg enquanto body.natal existir. -->
       <div class="slide" data-tag="Lysia Silva · nail designer"><div class="photo" style="background-image:url('assets/lysia-capa.jpg');background-position:50% 20%"></div><div class="glint"><i></i></div></div>
       <span id="tag" hidden></span>
     </div>
@@ -518,17 +520,12 @@ html,body{overflow-x:clip}
         <i></i>
         <span></span>
       </div>
-      <div class="natal-grid">
-        <figure class="natal-foto rv">
-          <img src="assets/lysia-natal.jpg" width="1086" height="1448" alt="Lysia Silva no estúdio, de gorro de Natal e vestido vermelho listrado, sorrindo com o micromotor em frente ao letreiro dourado Lysia Silva, designer de unhas." loading="lazy" decoding="async">
-        </figure>
-        <div class="natal-copy">
-          <span class="label rv">Boas festas</span>
-          <h2 class="title rv" id="natal-titulo">Feliz <span class="gloss">Natal.</span></h2>
-          <p class="natal-ano rv">Feliz Ano Novo</p>
-          <p class="lede rv">Obrigada por fazer parte da minha história neste ano. Que o amor, a paz e a gratidão acompanhem os seus dias, e que venham novos sonhos e ainda mais beleza para a sua vida.</p>
-          <p class="natal-assinatura rv">Com carinho, Lysia</p>
-        </div>
+      <div class="natal-faixa">
+        <span class="label rv">Boas festas</span>
+        <h2 class="title rv" id="natal-titulo">Feliz <span class="gloss">Natal.</span></h2>
+        <p class="natal-ano rv">Feliz Ano Novo</p>
+        <p class="lede rv">Obrigada por fazer parte da minha história neste ano. Que o amor, a paz e a gratidão acompanhem os seus dias, e que venham novos sonhos e ainda mais beleza para a sua vida.</p>
+        <p class="natal-assinatura rv">Com carinho, Lysia</p>
       </div>
     </div>
   </section>
@@ -666,7 +663,8 @@ html,body{overflow-x:clip}
 
   <section id="sobre">
     <div class="wrap about">
-      <figure class="rv"><img src="assets/lysia.jpg" alt="Lysia Silva, nail designer, segurando cartela de cores" loading="lazy" width="900" height="1200"></figure>
+      <!-- TEMA DE NATAL: foto original assets/lysia.jpg, alt "Lysia Silva, nail designer, segurando cartela de cores" -->
+      <figure class="rv"><img src="assets/lysia-natal.jpg" alt="Lysia Silva no estúdio, de gorro de Natal e vestido vermelho listrado, sorrindo com o micromotor diante do letreiro dourado." loading="lazy" decoding="async" width="1086" height="1448"></figure>
       <div>
         <span class="label rv">Quem atende</span>
         <h2 class="title rv">Prazer, <span class="gloss">Lysia.</span></h2>
