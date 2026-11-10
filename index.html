@@ -5,13 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio Lysia Silva · Nail designer em Olinda</title>
 <meta name="description" content="Banho em gel, gel na tip, molde F1, fibra de vidro, manutenção e pé em gel em Olinda. Agende pelo WhatsApp com a nail designer Lysia Silva.">
-<meta name="theme-color" content="#FAF7F4">
+<!-- TEMA DE NATAL: devolva o theme-color para #FAF7F4 -->
+<meta name="theme-color" content="#FBF6F2">
 <meta property="og:title" content="Studio Lysia Silva · Nail designer">
 <meta property="og:description" content="Unhas em gel com capricho em cada detalhe. Olinda, PE.">
 <meta property="og:image" content="https://studiolysiasilva.com.br/assets/lysia-capa.jpg">
 <meta property="og:url" content="https://studiolysiasilva.com.br/">
 <link rel="canonical" href="https://studiolysiasilva.com.br/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF7F4'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%232A2321'%3ELS%3C/text%3E%3C/svg%3E">
+<!-- TEMA DE NATAL: favicon original (fundo #FAF7F4, letras #2A2321):
+     data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF7F4'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%232A2321'%3ELS%3C/text%3E%3C/svg%3E -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FBF6F2'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%23642833'%3ELS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
@@ -463,8 +466,11 @@ html,body{overflow-x:clip}
 .wa:hover{transform:scale(1.06)}
 .wa svg{width:28px;height:28px;fill:var(--canvas)}
 </style>
+<!-- TEMA DE NATAL: apague este link, a classe "natal" do body, a section#natal,
+     natal.css e assets/lysia-natal.jpg. Passo a passo no topo de natal.css. -->
+<link rel="stylesheet" href="natal.css">
 </head>
-<body>
+<body class="natal">
 <a class="skip" href="#main">Pular para o conteúdo</a>
 <div class="env" aria-hidden="true"></div>
 
@@ -503,6 +509,29 @@ html,body{overflow-x:clip}
 </header>
 
 <main id="main" tabindex="-1">
+
+  <!-- TEMA DE NATAL: apague esta section inteira depois das festas -->
+  <section id="natal" aria-labelledby="natal-titulo">
+    <div class="wrap">
+      <div class="natal-divisor" aria-hidden="true">
+        <span></span>
+        <i></i>
+        <span></span>
+      </div>
+      <div class="natal-grid">
+        <figure class="natal-foto rv">
+          <img src="assets/lysia-natal.jpg" width="1086" height="1448" alt="Lysia Silva no estúdio, de gorro de Natal e vestido vermelho listrado, sorrindo com o micromotor em frente ao letreiro dourado Lysia Silva, designer de unhas." loading="lazy" decoding="async">
+        </figure>
+        <div class="natal-copy">
+          <span class="label rv">Boas festas</span>
+          <h2 class="title rv" id="natal-titulo">Feliz <span class="gloss">Natal.</span></h2>
+          <p class="natal-ano rv">Feliz Ano Novo</p>
+          <p class="lede rv">Obrigada por fazer parte da minha história neste ano. Que o amor, a paz e a gratidão acompanhem os seus dias, e que venham novos sonhos e ainda mais beleza para a sua vida.</p>
+          <p class="natal-assinatura rv">Com carinho, Lysia</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="trabalhos">
     <div class="wrap">
