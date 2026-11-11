@@ -1,198 +1,124 @@
-/* ============================================================
-   TEMA DE NATAL — dezembro
-   Camada leve: paleta (vinho e ouro), a mensagem de boas festas,
-   a capa com jaleco vinho, o retrato recortado em Quem atende
-   e enfeites discretos nos cantos das seções.
-   As fotos originais ficam intactas:
-   - assets/lysia-capa.jpg  (capa bege; o HTML ainda aponta pra ela)
-   - assets/lysia.jpg
-   Arquivos de dezembro:
-   - assets/lysia-capa-natal.jpg  (mesma capa, jaleco vinho, mesmo enquadramento;
-     o "Feliz Natal!" foi descido na imagem para não cortar no degradê)
-   - assets/lysia-natal.webp      (retrato de gorro, fundo removido)
-   - assets/natal/                (pinheiro, azevinho, bola e estrela, SVG)
+/*
+  TEMA DE NATAL — reversão
+  Remova a classe natal do body para conferir o visual habitual.
+  Para retirar a camada e seus downloads de vez:
+  1. No index.html, remova o link de natal.css e a classe natal do body.
+  2. Troque o href do preload por assets/lysia-capa.jpg e volte o
+     background-image da capa para url('assets/lysia-capa.jpg').
+  3. Remova a seção #natal e, em #sobre, remova o bloco oculto
+     .natal-retrato. A imagem original já está no HTML.
+  4. Remova os comentários TEMA DE NATAL, natal.css e assets/natal/.
+  O favicon, a página 404 e os retratos originais já são os do site habitual.
+*/
 
-   PARA VOLTAR AO VISUAL DO ANO, nesta ordem:
-   1. No index.html:
-      - apague o <link> deste arquivo, a classe "natal" do <body>,
-        a <section id="natal"> e os comentários "TEMA DE NATAL"
-        (inclui cada <img class="natal-enfeite">);
-      - na seção #sobre, volte o src para assets/lysia.jpg,
-        o alt para "Lysia Silva, nail designer, segurando cartela de cores"
-        e width/height para 900 e 1200;
-      - devolva theme-color para #FAF7F4 e o favicon original
-        (anotados no <head>).
-      - devolva o preload para assets/lysia-capa.jpg.
-      A capa em si volta sozinha ao apagar este arquivo
-      (o HTML continua em assets/lysia-capa.jpg).
-   2. No 404.html: devolva as três cores do :root anotadas lá.
-   3. Apague este arquivo, assets/lysia-capa-natal.jpg,
-      assets/lysia-natal.webp e a pasta assets/natal/.
-      Não apague lysia-capa.jpg nem lysia.jpg.
-
-   Tirar a classe "natal" desliga a paleta e devolve a capa bege.
-   O arco e a foto
-   originais de Quem atende só voltam quando o src do passo 1
-   também é restaurado (o arco em si volta com este arquivo).
-   ============================================================ */
-
-body.natal{
-  --ink:#642833;
-  --accent:#642833;
-  --accent-hover:#833E4C;
-  --mocha:#7C5A30;
-  --mocha-light:#F4E6D0;
-  --natal-gold:#A68448;
-  --natal-wine:#642833;
+body.natal {
+  --ink: #642833;
+  --accent: #642833;
+  --accent-hover: #833e4c;
+  --mocha: #7c5a30;
+  --mocha-light: #f4e6d0;
+  --natal-creme: #f8efe2;
+  /* A primeira camada cobre a frase e o coração gravados no fundo da capa. */
+  --natal-capa: url('assets/natal/capa-fundo.svg'), url('assets/natal/lysia-capa-hd.webp');
 }
 
-/* capa vinho: mesma posição (50% 20% no HTML), cover e o mesmo degradê.
-   O arquivo tem o mesmo tamanho em pixels da capa bege, sem corte extra. */
-body.natal .hero .photo{
-  background-image:url("assets/lysia-capa-natal.jpg") !important;
+body.natal .gloss {
+  color: var(--mocha);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  animation: none;
 }
 
-body.natal .gloss{
-  background-image:linear-gradient(100deg,var(--mocha) 0%,var(--mocha) 42%,#FFF4DC 50%,var(--mocha) 58%,var(--mocha) 100%);
-}
-body.natal .btn.ghost{box-shadow:inset 0 0 0 1px rgba(100,40,51,.4)}
-body.natal .btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--ink)}
-body.natal .field input,
-body.natal .field select,
-body.natal .ficha .field textarea{border-bottom-color:rgba(100,40,51,.38)}
-body.natal .fc-opt span:hover{border-color:rgba(124,90,48,.55)}
-body.natal .wa{box-shadow:0 8px 24px rgba(100,40,51,.28)}
-
-/* quem atende: recorte sem arco, sem caixa, dissolvendo no fundo */
-body.natal #sobre figure{
-  aspect-ratio:auto;
-  height:auto;
-  overflow:visible;
-  border-radius:0;
-  background:none;
-}
-body.natal #sobre figure img{
-  width:min(100%,520px);
-  height:auto;
-  object-fit:contain;
-  object-position:center top;
-  border-radius:0;
-  -webkit-mask-image:linear-gradient(to bottom,#000 56%,transparent 90%),linear-gradient(to right,transparent 0,#000 10%,#000 90%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(to bottom,#000 56%,transparent 90%),linear-gradient(to right,transparent 0,#000 10%,#000 90%,transparent 100%);
-  mask-composite:intersect;
+body.natal :focus-visible {
+  outline-width: 2px;
 }
 
-/* ---------- seção de boas festas: só o texto ---------- */
-#natal{
-  position:relative;
-  overflow:hidden;
-  padding-top:clamp(48px,6vw,88px);
-  padding-bottom:clamp(56px,7vw,100px);
-  text-align:center;
-  background:
-    radial-gradient(ellipse 42% 70% at 8% 40%,rgba(196,164,106,.16),transparent 70%),
-    radial-gradient(ellipse 36% 60% at 96% 78%,rgba(100,40,51,.07),transparent 68%),
-    var(--canvas);
-}
-#natal::before,
-#natal::after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  pointer-events:none;
-}
-#natal::before{
-  width:220px;height:220px;
-  top:48px;right:-70px;
-  background:radial-gradient(circle,rgba(255,246,226,.95),rgba(255,246,226,0) 68%);
-}
-#natal::after{
-  width:160px;height:160px;
-  left:6%;bottom:8%;
-  background:radial-gradient(circle,rgba(166,132,72,.2),rgba(166,132,72,0) 70%);
-}
-#natal .wrap{position:relative;z-index:1}
-
-.natal-divisor{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  margin:0 auto clamp(28px,4vw,48px);
-  color:var(--natal-gold);
-}
-.natal-divisor span{
-  display:block;
-  width:min(92px,16vw);
-  height:1px;
-  background:linear-gradient(90deg,transparent,currentColor);
-}
-.natal-divisor span:last-child{background:linear-gradient(90deg,currentColor,transparent)}
-.natal-divisor i{
-  flex:none;
-  width:7px;height:7px;
-  margin:0 1px;
-  background:currentColor;
-  transform:rotate(45deg);
+body.natal #cuidado .how figure {
+  border-radius: 20px;
 }
 
-.natal-faixa{max-width:38rem;margin:0 auto}
-#natal .label{justify-content:center}
-#natal .label::after{content:"";width:28px;height:1px;background:currentColor}
-#natal .title,#natal .lede{margin-left:auto;margin-right:auto}
-.natal-ano{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(28px,3vw,42px);
-  line-height:1.1;
-  color:var(--mocha);
-  margin-top:10px;
-}
-.natal-assinatura{
-  margin-top:26px;
-  font-family:var(--serif);
-  font-size:clamp(22px,2vw,28px);
-  line-height:1.2;
-  color:var(--text-primary);
+body.natal #cuidado .how figure img {
+  transform: none;
 }
 
-@media (max-width:860px){
-  body.natal #sobre figure{
-    aspect-ratio:auto;
-    border-radius:0;
-    max-width:420px;
-    margin-inline:auto;
+body.natal #sobre figure {
+  aspect-ratio: auto;
+  overflow: visible;
+  border-radius: 0;
+  background: none;
+}
+
+body.natal #sobre figure > img {
+  display: none;
+}
+
+body.natal #sobre .natal-retrato {
+  display: block;
+}
+
+body.natal #sobre .natal-retrato img {
+  width: min(100%, 520px);
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+  --natal-retrato-mascara: linear-gradient(to bottom, #000 62%, transparent 95%), /* taste-skill-ignore */
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); /* taste-skill-ignore */
+  -webkit-mask-image: var(--natal-retrato-mascara);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--natal-retrato-mascara);
+  mask-composite: intersect;
+}
+
+body.natal #natal {
+  display: block;
+  padding-block: clamp(42px, 5vw, 72px);
+  background: var(--natal-creme);
+  text-align: center;
+}
+
+body.natal #natal::after,
+body.natal #sobre .about > div::after {
+  content: "";
+  display: block;
+  width: min(184px, 100%);
+  height: 42px;
+  margin-top: 22px;
+  background: url('assets/natal/coracao.svg') center / contain no-repeat;
+}
+
+body.natal #natal::after {
+  margin-inline: auto;
+}
+
+body.natal #natal-titulo {
+  color: var(--ink);
+  font: 400 clamp(42px, 5vw, 68px)/1 var(--serif);
+}
+
+body.natal #natal-titulo span {
+  display: block;
+  margin-top: 7px;
+  color: var(--mocha);
+  font-size: .72em;
+  line-height: 1.15;
+}
+
+/* As estrelas cabem nos 96px de respiro que o site já usa nas seções. */
+body.natal :is(#tecnicas, #duvidas)::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 28px;
+  inset-inline-start: 50%;
+  width: 48px;
+  height: 40px;
+  translate: -50% 0;
+  background: url('assets/natal/estrelas.svg') center / contain no-repeat;
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  body.natal #sobre figure {
+    width: min(100%, 420px);
+    margin-inline: auto;
   }
-  body.natal #sobre figure img{width:100%}
-}
-
-/* enfeites: só nos vãos da seção, nunca por cima do texto.
-   O .wrap fica acima, então foto e botão cobrem o desenho se encostar. */
-body.natal .natal-enfeite{
-  position:absolute;
-  z-index:0;
-  display:block;
-  height:auto;
-  pointer-events:none;
-  user-select:none;
-}
-body.natal .wrap{position:relative;z-index:1}
-body.natal .enfeite-natal-ramo{top:10px;left:18px;width:132px;opacity:.42}
-body.natal .enfeite-natal-bola{right:26px;bottom:18px;width:40px;opacity:.58}
-body.natal .enfeite-trabalhos{top:36px;right:34px;width:16px;opacity:.55}
-body.natal .enfeite-tecnicas{left:22px;bottom:22px;width:84px;opacity:.4;transform:rotate(-10deg)}
-body.natal .enfeite-cuidado{right:24px;bottom:20px;width:124px;opacity:.36;transform:scaleX(-1) rotate(8deg)}
-body.natal .enfeite-sobre{top:28px;right:36px;width:15px;opacity:.5}
-body.natal .enfeite-duvidas{left:30px;bottom:24px;width:32px;opacity:.52}
-body.natal .enfeite-dezembro{top:18px;right:22px;width:72px;opacity:.4;transform:rotate(-12deg)}
-@media (max-width:860px){
-  body.natal .enfeite-natal-ramo{top:8px;left:6px;width:72px;opacity:.34}
-  body.natal .enfeite-trabalhos{top:22px;right:12px;width:13px}
-  body.natal .enfeite-tecnicas{left:4px;bottom:12px;width:58px}
-  body.natal .enfeite-duvidas{left:10px;bottom:14px;width:24px}
-  body.natal .enfeite-natal-bola,
-  body.natal .enfeite-cuidado,
-  body.natal .enfeite-sobre,
-  body.natal .enfeite-dezembro{display:none}
 }
