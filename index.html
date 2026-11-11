@@ -15,7 +15,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/lysia-capa.jpg">
+<!-- TEMA DE NATAL: preload original em assets/lysia-capa.jpg -->
+<link rel="preload" as="image" href="assets/natal/lysia-capa-hd.webp">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"NailSalon","name":"Studio Lysia Silva","telephone":"+55 81 97315-0581","address":{"@type":"PostalAddress","streetAddress":"Rua Asteca, 374, Alto da Conquista","addressLocality":"Olinda","addressRegion":"PE","addressCountry":"BR"},"image":"https://studiolysiasilva.com.br/assets/lysia-capa.jpg","sameAs":["https://www.instagram.com/studiolysiasilva/"]}
 </script>
@@ -463,8 +464,10 @@ html,body{overflow-x:clip}
 .wa:hover{transform:scale(1.06)}
 .wa svg{width:28px;height:28px;fill:var(--canvas)}
 </style>
+<!-- TEMA DE NATAL: instruções de reversão em natal.css -->
+<link rel="stylesheet" href="natal.css">
 </head>
-<body>
+<body class="natal">
 <a class="skip" href="#main">Pular para o conteúdo</a>
 <div class="env" aria-hidden="true"></div>
 
@@ -496,13 +499,18 @@ html,body{overflow-x:clip}
       </div>
     </div>
     <div class="frame" aria-hidden="true">
-      <div class="slide" data-tag="Lysia Silva · nail designer"><div class="photo" style="background-image:url('assets/lysia-capa.jpg');background-position:50% 20%"></div><div class="glint"><i></i></div></div>
+      <div class="slide" data-tag="Lysia Silva · nail designer"><div class="photo" style="background-image:var(--natal-capa,url('assets/lysia-capa.jpg'));background-position:50% 20%"></div><div class="glint"><i></i></div></div>
       <span id="tag" hidden></span>
     </div>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
+
+  <!-- TEMA DE NATAL: recado de fim de ano -->
+  <section id="natal" aria-labelledby="natal-titulo" hidden>
+    <h2 id="natal-titulo">Feliz Natal! <span>Feliz Ano Novo!</span></h2>
+  </section>
 
   <section id="trabalhos">
     <div class="wrap">
@@ -637,7 +645,12 @@ html,body{overflow-x:clip}
 
   <section id="sobre">
     <div class="wrap about">
-      <figure class="rv"><img src="assets/lysia.jpg" alt="Lysia Silva, nail designer, segurando cartela de cores" loading="lazy" width="900" height="1200"></figure>
+      <figure class="rv"><img src="assets/lysia.jpg" alt="Lysia Silva, nail designer, segurando cartela de cores" loading="lazy" width="900" height="1200">
+        <!-- TEMA DE NATAL: retrato sazonal -->
+        <span class="natal-retrato" hidden>
+          <img src="assets/natal/lysia-hd.webp" alt="Lysia Silva sorrindo de gorro de Natal, com um micromotor na mão" loading="lazy" decoding="async" width="1638" height="1780">
+        </span>
+      </figure>
       <div>
         <span class="label rv">Quem atende</span>
         <h2 class="title rv">Prazer, <span class="gloss">Lysia.</span></h2>

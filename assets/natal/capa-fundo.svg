@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="941" height="1672" viewBox="0 0 941 1672">
+  <defs>
+    <linearGradient id="fundo" gradientUnits="userSpaceOnUse" x1="650" y1="738" x2="941" y2="623">
+      <stop stop-color="#edcfba"/>
+      <stop offset=".37" stop-color="#f4ded0"/>
+      <stop offset=".69" stop-color="#f2e2d8"/>
+      <stop offset="1" stop-color="#f4e6e0"/>
+    </linearGradient>
+    <filter id="suave" x="0" y="0" width="941" height="1672" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <linearGradient id="fundo-coracao" gradientUnits="userSpaceOnUse" x1="732" y1="765" x2="916" y2="775">
+      <stop stop-color="#f3d8c4"/>
+      <stop offset=".46" stop-color="#f4ddce"/>
+      <stop offset="1" stop-color="#efd9ca"/>
+    </linearGradient>
+    <filter id="borda-coracao" x="718" y="730" width="218" height="80" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  <path fill="url(#fundo)" filter="url(#suave)" d="M684 624h252q9 0 9 9v99q0 9-9 9H702q-14 0-20-14l-29-46q-8-13 1-25l17-24q4-8 13-8Z"/>
+  <path fill="url(#fundo-coracao)" filter="url(#borda-coracao)" d="M731 757q27-8 60-9l16-6h56l10 11h39v32q-46 0-93 7l-37-9-47-14q-7-2-4-12Z"/>
+</svg>
