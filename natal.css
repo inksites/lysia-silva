@@ -18,8 +18,29 @@ body.natal {
   --mocha: #7c5a30;
   --mocha-light: #f4e6d0;
   --natal-creme: #f8efe2;
-  /* A primeira camada cobre a frase e o coração gravados no fundo da capa. */
-  --natal-capa: url('assets/natal/capa-fundo.svg'), url('assets/natal/lysia-capa-hd.webp');
+  --natal-capa: url('assets/natal/lysia-capa-festiva.webp');
+}
+
+body.natal .hero .frame {
+  display: grid;
+  place-items: center;
+  container-type: size;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* A máscara acompanha os limites da foto para manter as saudações inteiras. */
+body.natal .hero .slide {
+  position: relative;
+  inset: auto;
+  width: min(100%, calc(100cqh * 1122 / 1402));
+  aspect-ratio: 1122 / 1402;
+  --natal-capa-mascara: linear-gradient(to bottom, transparent, #000 6%, #000 87%, #000c 93%, #0004 98%, transparent 100%), /* taste-skill-ignore */
+    linear-gradient(to right, transparent, #000 9%, #000 97%, transparent); /* taste-skill-ignore */
+  -webkit-mask-image: var(--natal-capa-mascara);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--natal-capa-mascara);
+  mask-composite: intersect;
 }
 
 body.natal .gloss {
@@ -34,11 +55,24 @@ body.natal :focus-visible {
 }
 
 body.natal #cuidado .how figure {
+  aspect-ratio: 3 / 4;
   border-radius: 20px;
+  justify-self: center;
+  width: 100%;
 }
 
 body.natal #cuidado .how figure img {
   transform: none;
+}
+
+body.natal #servicos .menu-note {
+  justify-content: center;
+  text-align: center;
+}
+
+body.natal #servicos .menu-note > span {
+  flex-basis: 100%;
+  text-wrap: balance;
 }
 
 body.natal #sobre figure {
@@ -54,15 +88,16 @@ body.natal #sobre figure > img {
 
 body.natal #sobre .natal-retrato {
   display: block;
+  width: min(100%, 520px);
+  margin-inline: auto;
 }
 
 body.natal #sobre .natal-retrato img {
-  width: min(100%, 520px);
+  width: 100%;
   height: auto;
-  margin-inline: auto;
   object-fit: contain;
-  --natal-retrato-mascara: linear-gradient(to bottom, #000 62%, transparent 95%), /* taste-skill-ignore */
-    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); /* taste-skill-ignore */
+  --natal-retrato-mascara: linear-gradient(to bottom, transparent, #000 16%, #000 79%, #000e 85%, #000a 91%, #0004 97%, transparent 100%), /* taste-skill-ignore */
+    linear-gradient(to right, transparent, #000 15%, #000 88%, transparent); /* taste-skill-ignore */
   -webkit-mask-image: var(--natal-retrato-mascara);
   -webkit-mask-composite: source-in;
   mask-image: var(--natal-retrato-mascara);
@@ -117,8 +152,26 @@ body.natal :is(#tecnicas, #duvidas)::before {
 }
 
 @media (max-width: 860px) {
+  body.natal #cuidado .how figure {
+    max-width: 420px;
+  }
+
   body.natal #sobre figure {
     width: min(100%, 420px);
     margin-inline: auto;
+  }
+
+  body.natal #sobre .about > div::after {
+    content: none;
+  }
+}
+
+@media (max-width: 560px) {
+  body.natal #servicos .menu-note {
+    flex-direction: column;
+  }
+
+  body.natal #servicos .menu-note .btn {
+    width: min(100%, 16rem);
   }
 }
