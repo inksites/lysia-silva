@@ -156,6 +156,11 @@ body.natal :is(#tecnicas, #duvidas)::before {
     max-width: 420px;
   }
 
+  body.natal #cuidado .how figure img {
+    transform: scale(1.4);
+    transform-origin: right center;
+  }
+
   body.natal #sobre figure {
     width: min(100%, 420px);
     margin-inline: auto;
